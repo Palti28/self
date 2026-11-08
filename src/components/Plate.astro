@@ -1,0 +1,9 @@
+---
+import { plateHTML, type Media } from "../lib/media";
+import { useT, type Lang } from "../lib/i18n";
+
+interface Props { item: Media; lang: Lang; w?: number; sizes?: string; eager?: boolean }
+const { item, lang, ...opts } = Astro.props;
+---
+
+<Fragment set:html={plateHTML(item, { ...opts, fullLabel: useT(lang)("img.full") })} />

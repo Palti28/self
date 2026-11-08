@@ -1,0 +1,10 @@
+---
+import { useT, type Lang } from "../lib/i18n";
+
+const t = useT(Astro.props.lang as Lang);
+---
+
+<div class="switch" role="group" aria-label={t("work.layout")}>
+  <button type="button" data-view="list" aria-pressed="true">{t("view.list")}</button>
+  <button type="button" data-view="grid" aria-pressed="false">{t("view.grid")}</button>
+</div>

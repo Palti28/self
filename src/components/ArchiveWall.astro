@@ -1,0 +1,31 @@
+---
+/* Masonry wall of archive items. Images and videos open the lightbox; links open in a new tab. */
+import Plate from "./Plate.astro";
+import { useT, type Lang } from "../lib/i18n";
+
+interface Props { shots: any[]; lang: Lang; cols?: 3 | 4 }
+const { shots, lang, cols = 4 } = Astro.props;
+const t = useT(lang);
+const verb = { image: "shot.open", video: "shot.play", link: "shot.visit" } as Record<string, string>;
+const badge: Record<string, string> = {
+  image: '<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 4V1h3M10 7v3H7M1 1l3.5 3.5M10 10 6.5 6.5" stroke="currentColor" stroke-width="1.1"/></svg>',
+  video: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2.5 1.2v7.6L8.6 5z"/></svg>',
+  link: '<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 1.5h5.5V7M8.5 1.5 1.5 8.5" stroke="currentColor" stroke-width="1.1"/></svg>',
+};
+---
+
+<div class:list={["wall", cols === 3 && "wall--3"]}>
+  {shots.map((sh) => {
+    const Tag = sh.kind === "link" ? "a" : "button";
+    const attrs = sh.kind === "link" ? { href: sh.href, target: "_blank", rel: "noopener" } : { type: "button" };
+    return (
+      <Tag class={`shot shot--${sh.kind}`} data-i={sh.i} data-key={sh.tag} aria-label={`${t(verb[sh.kind])} ${sh.title}`} {...attrs}>
+        <div class="shot__frame">
+          <Plate item={sh} lang={lang} w={800} sizes="(max-width: 760px) 50vw, 25vw" />
+          <span class="shot__zoom" aria-hidden="true" set:html={badge[sh.kind]} />
+        </div>
+        <span class="shot__cap"><span>{sh.title}</span><span>{sh.tagLabel}</span></span>
+      </Tag>
+    );
+  })}
+</div>

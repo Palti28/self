@@ -1,0 +1,10 @@
+---
+interface Props { href: string; label: string; count: string }
+const { href, label, count } = Astro.props;
+---
+
+<a class="more" href={href}>
+  <span>{label}</span>
+  <span class="more__n tab">{count}</span>
+  <span class="more__arrow" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M11 6 7 2M11 6l-4 4" stroke="currentColor" stroke-width="1.2" /></svg></span>
+</a>

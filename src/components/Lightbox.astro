@@ -1,0 +1,23 @@
+---
+import { useT, type Lang } from "../lib/i18n";
+
+interface Props { lang: Lang }
+const t = useT(Astro.props.lang);
+---
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lb-cap" hidden>
+  <div class="lb__bar">
+    <span class="label tab" id="lb-count"></span>
+    <button type="button" class="lb__btn" id="lb-close">{t("lb.close")} &times;</button>
+  </div>
+  <div class="lb__stage" id="lb-stage"></div>
+  <div class="lb__foot">
+    <span class="lb__cap" id="lb-cap"></span>
+    <div>
+      <a class="lb__btn lb__link" id="lb-ext" href="#" target="_blank" rel="noopener" hidden>{t("lb.open")} &#8599;</a>
+      <a class="lb__btn lb__link" id="lb-link" href="#" hidden>{t("lb.case")} &rarr;</a>
+      <button type="button" class="lb__btn" id="lb-prev">&larr; {t("lb.prev")}</button>
+      <button type="button" class="lb__btn" id="lb-next">{t("lb.next")} &rarr;</button>
+    </div>
+  </div>
+</div>

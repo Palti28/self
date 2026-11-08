@@ -1,0 +1,23 @@
+---
+import { SITE } from "../data/site";
+import { L, useT, type Lang } from "../lib/i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<footer class="wrap">
+  <div class="foot">
+    <ul class="socials">
+      {SITE.socials.map((s) => (
+        <li><a href={s.href} target="_blank" rel="noopener">{L(s.label, lang)}<sup>&#8599;</sup></a></li>
+      ))}
+    </ul>
+    <div class="legal">
+      <span>&copy; {new Date().getFullYear()} {SITE.name}. {t("foot.rights")}</span>
+      <span>{SITE.location} &middot; <span class="tab" data-clock={SITE.timezone}>00:00</span> {SITE.tzLabel}</span>
+      <a href={`https://${SITE.domain}`} target="_blank" rel="noopener">{SITE.domain} &#8599;</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,88 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Plate from "../../../components/Plate.astro";
+import ArchiveWall from "../../../components/ArchiveWall.astro";
+import { SITE } from "../../../data/site";
+import { L, LANGS, url, useT, type Lang } from "../../../lib/i18n";
+import { projects, shots, shotsOf } from "../../../lib/content";
+import { pad } from "../../../lib/media";
+
+export const getStaticPaths = () =>
+  LANGS.flatMap((lang) =>
+    projects.map((p) => ({ params: { lang: lang === "en" ? undefined : lang, slug: p.slug }, props: { lang, p } })),
+  );
+
+const { lang, p } = Astro.props as { lang: Lang; p: any };
+const t = useT(lang);
+const tr = (v: any) => L(v, lang);
+const next = projects[(projects.indexOf(p) + 1) % projects.length];
+const related = shotsOf(shots.filter((s) => s.project === p.slug), lang);
+const links = [].concat(p.link || []) as any[];
+
+const words = p.body
+  .flatMap((b: any) => [tr(b.text) || "", ...(b.type === "list" ? b.items.map(tr) : [])])
+  .join(" ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+const readMins = Math.max(1, Math.round(words / 220));
+const sizes = { text: "(max-width: 760px) 100vw, 680px", wide: "(max-width: 760px) 100vw, 1040px", full: "100vw" } as Record<string, string>;
+---
+
+<Base lang={lang} path={`/work/${p.slug}`} title={tr(p.title)} description={tr(p.subtitle)} article>
+  <main>
+    <article class="article wrap">
+      <div class="prose">
+        <a class="back" href={url(lang, "/work")} data-back>&larr; {t("detail.backWork")}</a>
+        <div class="kicker label">{tr(p.category)} &middot; {p.year}</div>
+        <h1 class="a-title">{tr(p.title)}</h1>
+        {p.subtitle && <p class="a-sub">{tr(p.subtitle)}</p>}
+        <div class="byline">
+          <span class="avatar">{SITE.author.avatar ? <img src={SITE.author.avatar} alt="" /> : SITE.author.initials}</span>
+          <span class="byline__who"><span>{SITE.name}</span><span class="byline__meta">{readMins} {t("detail.read")} &middot; {tr(p.date) || p.year}</span></span>
+          {links.length > 0 && (
+            <span class="byline__links">
+              {links.map((l) => <a class="byline__link" href={l.href} target="_blank" rel="noopener">{tr(l.label)} &#8599;</a>)}
+            </span>
+          )}
+        </div>
+        <figure class="fig fig--wide"><Plate item={{ ...p, title: tr(p.title) }} lang={lang} w={1600} sizes={sizes.wide} eager /></figure>
+        {p.facts && (
+          <dl class="facts">{p.facts.map(([k, v]: any) => <div><dt>{tr(k)}</dt><dd>{tr(v)}</dd></div>)}</dl>
+        )}
+
+        {p.body.map((b: any) => {
+          switch (b.type) {
+            case "p": return <p set:html={tr(b.text)} />;
+            case "h": return <h2>{tr(b.text)}</h2>;
+            case "quote": return <blockquote set:html={tr(b.text)} />;
+            case "list": return <ul>{b.items.map((x: any) => <li set:html={tr(x)} />)}</ul>;
+            case "sep": return <hr class="sep" />;
+            case "img": return (
+              <figure class={`fig fig--${b.width || "text"}`}>
+                <Plate item={b} lang={lang} w={1600} sizes={sizes[b.width || "text"]} />
+                {b.caption && <figcaption>{tr(b.caption)}</figcaption>}
+              </figure>
+            );
+            case "pair": return (
+              <figure class="fig fig--wide">
+                <div class="pair">{b.items.map((it: any) => <Plate item={it} lang={lang} w={1000} sizes="(max-width: 560px) 100vw, 520px" />)}</div>
+                {b.caption && <figcaption>{tr(b.caption)}</figcaption>}
+              </figure>
+            );
+          }
+        })}
+
+        {related.length > 0 && (
+          <section class="a-screens" aria-label={t("detail.screens")}>
+            <div class="a-screens__head"><span class="label">{t("detail.screens")}</span><span class="label tab">{pad(related.length)}</span></div>
+            <ArchiveWall shots={related} lang={lang} cols={3} />
+          </section>
+        )}
+
+        <a class="next" href={url(lang, `/work/${next.slug}`)}>
+          <span class="label">{t("detail.next")}</span>
+          <span class="next__title">{tr(next.title)}<i aria-hidden="true">&rarr;</i></span>
+          <span class="next__meta">{tr(next.category)} &middot; {next.year}</span>
+        </a>
+      </div>
+    </article>
+  </main>
+</Base>

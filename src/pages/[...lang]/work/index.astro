@@ -1,0 +1,34 @@
+---
+import Base from "../../../layouts/Base.astro";
+import PageHead from "../../../components/PageHead.astro";
+import Filters from "../../../components/Filters.astro";
+import ViewSwitch from "../../../components/ViewSwitch.astro";
+import WorkIndex from "../../../components/WorkIndex.astro";
+import { langPaths, url, useT, type Lang } from "../../../lib/i18n";
+import { chips, projectsByYear } from "../../../lib/content";
+import { pad } from "../../../lib/media";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.props.lang as Lang;
+const t = useT(lang);
+const list = projectsByYear();
+---
+
+<Base lang={lang} path="/work" title={t("works.title")} description={t("works.intro")}>
+  <main>
+    <PageHead
+      back={{ href: url(lang, "/#work"), label: t("page.home") }}
+      label={t("works.label")}
+      title={t("works.title")}
+      count={pad(list.length)}
+      intro={t("works.intro")}
+    />
+    <section class="wrap page-body" data-filter-scope>
+      <div class="toolbar">
+        <Filters chips={chips(list.map((p) => String(p.year)), t("filter.all"))} label={t("works.filter")} />
+        <ViewSwitch lang={lang} />
+      </div>
+      <WorkIndex projects={list} lang={lang} />
+    </section>
+  </main>
+</Base>

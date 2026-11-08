@@ -1,0 +1,118 @@
+---
+import Base from "../../layouts/Base.astro";
+import WorkIndex from "../../components/WorkIndex.astro";
+import ArchiveWall from "../../components/ArchiveWall.astro";
+import ViewSwitch from "../../components/ViewSwitch.astro";
+import MoreLink from "../../components/MoreLink.astro";
+import { SITE } from "../../data/site";
+import { L, langPaths, url, useT, type Lang } from "../../lib/i18n";
+import { projects, shots, shotsOf } from "../../lib/content";
+import { pad } from "../../lib/media";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.props.lang as Lang;
+const t = useT(lang);
+
+const work = projects.slice(0, SITE.featured.work);
+const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
+---
+
+<Base lang={lang} path="/" description={L(SITE.heroSub, lang).replace(/<[^>]+>/g, "")}>
+  <main>
+    <section class="hero wrap" id="top">
+      <div class="grid">
+        <div class="hero__eyebrow">
+          <span class="label">{t("hero.portfolio")} <span class="tab">{new Date().getFullYear()}</span></span>
+          <span class="label">{t("hero.eyebrow")}</span>
+        </div>
+
+        <div class="hero__head">
+          <h1 class="display">
+            <span>{t("hero.l1")}</span>
+            <span class="soft">{t("hero.l2")}</span>
+            <span class="soft">{t("hero.l3")}</span>
+          </h1>
+          <dl class="badge">
+            <dt>{t("badge.based")}</dt><dd>{SITE.location}</dd>
+            <dt>{t("badge.local")}</dt><dd><span class="tab" data-clock={SITE.timezone}>00:00</span> {SITE.tzLabel}, UTC+7</dd>
+            <dt>{t("badge.now")}</dt><dd>{L(SITE.current, lang)}</dd>
+          </dl>
+        </div>
+
+        <p class="spec" aria-hidden="true">
+          <span><b>Display</b> Geist 500</span>
+          <span><b>Size</b> clamp 40 / 148px</span>
+          <span><b>Tracking</b> &minus;4.8%</span>
+          <span><b>Leading</b> 0.93</span>
+        </p>
+
+        <div class="hero__foot">
+          <p class="hero__sub" set:html={L(SITE.heroSub, lang)} />
+          <a class="cue" href="#work">
+            <span>{t("cue")} <span class="tab">({pad(projects.length)})</span></span>
+            <span class="cue__arrow" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M6 11 2 7M6 11l4-4" stroke="currentColor" stroke-width="1.2" /></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="work" aria-labelledby="work-title">
+      <div class="sec-head">
+        <div class="sec-head__title">
+          <span class="label">{t("work.label")}</span>
+          <h2 class="h2" id="work-title">{t("work.title")}<sup class="tab">{pad(work.length)}</sup></h2>
+        </div>
+        <ViewSwitch lang={lang} />
+      </div>
+      <WorkIndex projects={work} lang={lang} />
+      <MoreLink href={url(lang, "/work")} label={t("work.more")} count={pad(projects.length)} />
+    </section>
+
+    <section class="section wrap" id="archive" aria-labelledby="archive-title">
+      <div class="sec-head">
+        <div class="sec-head__title">
+          <span class="label">{t("archive.label")}</span>
+          <h2 class="h2" id="archive-title">{t("archive.title")}<sup class="tab">{pad(shots.length)}</sup></h2>
+        </div>
+        <span class="label tab">{t("archive.showing", { n: pad(wall.length), total: pad(shots.length) })}</span>
+      </div>
+      <ArchiveWall shots={wall} lang={lang} />
+      <MoreLink href={url(lang, "/archive")} label={t("archive.more")} count={pad(shots.length)} />
+    </section>
+
+    <section class="section wrap" id="about" aria-labelledby="about-title">
+      <div class="grid">
+        <div class="about__left">
+          <span class="label">{t("about.label")}</span>
+          <h2 class="h2" id="about-title">{t("about.title")}</h2>
+        </div>
+        <div class="about__right">
+          <div class="bio-group">{SITE.bio.map((b) => <p class="bio">{L(b, lang)}</p>)}</div>
+          <div>
+            <div class="label block-title">{t("about.caps")}</div>
+            <ul class="caps">{SITE.capabilities.map((c) => <li><strong>{L(c.name, lang)}</strong><span>{L(c.note, lang)}</span></li>)}</ul>
+          </div>
+          <div>
+            <div class="label block-title">{t("about.highs")}</div>
+            <ul class="highs">{SITE.highlights.map((h) => <li><span class="when">{L(h.when, lang)}</span><p>{L(h.text, lang)}</p></li>)}</ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact wrap" id="contact" aria-labelledby="contact-title">
+      <span class="label">{t("contact.label")}</span>
+      <h2 class="callout" id="contact-title" set:html={t("contact.title")} />
+      <div class="copy-row">
+        <button type="button" class="copy" id="copy" data-state="idle" aria-live="polite"
+          data-email={SITE.email} data-idle={t("copy.idle")} data-done={t("copy.done")} data-select={t("copy.select")}>
+          <span class="copy__email">{SITE.email}</span>
+          <span class="copy__state">{t("copy.idle")}</span>
+        </button>
+        <p class="copy-note">{t("copy.note")}</p>
+      </div>
+    </section>
+  </main>
+</Base>

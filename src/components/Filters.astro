@@ -1,0 +1,11 @@
+---
+/* Filter chips. Items to filter carry data-key; the target is the closest [data-filter-scope]. */
+interface Props { chips: { value: string; label: string; count: number }[]; label: string }
+const { chips, label } = Astro.props;
+---
+
+<div class="filters" role="group" aria-label={label} data-filters>
+  {chips.map((c, i) => (
+    <button type="button" data-value={c.value} aria-pressed={i === 0 ? "true" : "false"}>{c.label}<sup>{c.count}</sup></button>
+  ))}
+</div>

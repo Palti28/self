@@ -1,0 +1,50 @@
+---
+/* Projects as an editorial list or an asymmetric grid; ViewSwitch toggles between them. */
+import Plate from "./Plate.astro";
+import { L, url, useT, type Lang } from "../lib/i18n";
+
+interface Props { projects: any[]; lang: Lang }
+const { projects, lang } = Astro.props;
+const t = useT(lang);
+const items = projects.map((p) => ({
+  ...p,
+  href: url(lang, `/work/${p.slug}`),
+  title: L(p.title, lang),
+  category: L(p.category, lang),
+  role: L(p.role, lang),
+}));
+---
+
+<div data-layout="list">
+  <div class="index__head label" aria-hidden="true">
+    <span>{t("col.project")}</span><span>{t("col.category")}</span><span>{t("col.year")}</span><span>{t("col.link")}</span>
+  </div>
+  <ul class="index">
+    {items.map((p) => (
+      <li data-key={p.year}>
+        <a class="row" href={p.href} data-slug={p.slug}>
+          <span class="row__name">{p.title}</span>
+          <span class="row__cat">{p.category}</span>
+          <span class="row__year">{p.year}</span>
+          <span class="row__go">{t("row.read")} <i>&#8599;</i></span>
+          <span class="row__meta">{p.category} &middot; {p.year}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<div data-layout="grid" hidden>
+  <div class="cards">
+    {items.map((p) => (
+      <a class="card" href={p.href} data-key={p.year}>
+        <Plate item={p} lang={lang} sizes="(max-width: 760px) 100vw, 58vw" />
+        <div class="card__meta">
+          <div class="card__top"><span class="card__title">{p.title}<i>&#8599;</i></span><span class="card__year tab">{p.year}</span></div>
+          <span class="card__role">{p.role}</span>
+          <div class="tags">{(p.tags || []).map((tag: any) => <span>{L(tag, lang)}</span>)}</div>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>

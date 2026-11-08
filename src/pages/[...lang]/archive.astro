@@ -1,0 +1,32 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import Filters from "../../components/Filters.astro";
+import ArchiveWall from "../../components/ArchiveWall.astro";
+import { langPaths, url, useT, type Lang } from "../../lib/i18n";
+import { chips, shots, shotsOf, tagLabel } from "../../lib/content";
+import { pad } from "../../lib/media";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.props.lang as Lang;
+const t = useT(lang);
+const wall = shotsOf(shots, lang);
+---
+
+<Base lang={lang} path="/archive" title={t("archives.title")} description={t("archives.intro")}>
+  <main>
+    <PageHead
+      back={{ href: url(lang, "/#archive"), label: t("page.home") }}
+      label={t("archives.label")}
+      title={t("archives.title")}
+      count={pad(wall.length)}
+      intro={t("archives.intro")}
+    />
+    <section class="wrap page-body" data-filter-scope>
+      <div class="toolbar">
+        <Filters chips={chips(wall.map((s) => s.tag), t("filter.all"), (tag) => tagLabel(tag, lang))} label={t("archive.filter")} />
+      </div>
+      <ArchiveWall shots={wall} lang={lang} />
+    </section>
+  </main>
+</Base>
