@@ -118,11 +118,11 @@ export const SITE = {
     {
       slug: "myasn",
       title: "MyASN BKN",
-      subtitle: { en: "Civil service HR platform for 4.4 million Indonesian civil servants.", id: "Platform HR kepegawaian untuk 4,4 juta ASN Indonesia." },
+      subtitle: { en: "Civil service HR platform for 4.4 million Indonesian civil servants." },
       category: { en: "Public sector product", id: "Produk sektor publik" },
       role: "UIX Engineer",
-      year: "2024",
-      date: "2024",
+      year: "2022",
+      date: { en: "Aug 2022", id: "Agu 2022" },
       tags: ["Web", "Android", "Gov"],
       ratio: "16/10", mockup: "mobile", image: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-cover.avif",
       link: { label: "MyASN · Google Play", href: "https://play.google.com/store/apps/details?id=com.nudi.bkn.sapk&hl=id" },
@@ -133,18 +133,15 @@ export const SITE = {
         [{ en: "Tools", id: "Perangkat" }, "Figma, Vue.js"]
       ],
       body: [
-        { type: "h", text: { en: "One platform. Millions of civil servants.", id: "Satu platform. Jutaan ASN." } },
+        { type: "h", text: { en: "One platform. Millions of civil servants." } },
         { type: "p", text: {
-          en: "BKN (Badan Kepegawaian Negara) is the national agency responsible for managing the personnel records of every civil servant in Indonesia. MySAPK, now MyASN, is their central digital platform: a single system where all 4.4 million ASN can view service records, submit administrative requests, track career history, and manage their professional data.",
-          id: "BKN (Badan Kepegawaian Negara) adalah lembaga nasional yang mengelola data kepegawaian seluruh ASN di Indonesia. MySAPK, kini MyASN, adalah platform digital utamanya: satu sistem tempat seluruh 4,4 juta ASN dapat melihat riwayat kepegawaian, mengajukan permohonan administrasi, menelusuri riwayat karier, dan mengelola data profesional mereka." } },
+          en: "BKN (Badan Kepegawaian Negara) is the national agency responsible for managing the personnel records of every civil servant in Indonesia. MySAPK, now MyASN, is their central digital platform: a single system where all 4.4 million ASN can view service records, submit administrative requests, track career history, and manage their professional data." } },
         { type: "p", text: {
-          en: "One platform. Millions of users. No room for ambiguity in the UX.",
-          id: "Satu platform. Jutaan pengguna. Tidak ada ruang untuk ambiguitas dalam UX." } },
-        { type: "img", width: "wide", src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(1).avif" },
-        { type: "h", text: { en: "Design to delivery: 14 features, 100+ screens", id: "Dari desain hingga rilis: 14 fitur, 100+ layar" } },
+          en: "One platform. Millions of users. No room for ambiguity in the UX." } },
+        { type: "img", width: "wide", src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(1).avif", alt: "MyASN BKN dashboard and profile screens for Indonesian civil servants", caption: "MyASN dashboard and profile: one record, every civil servant." },
+        { type: "h", text: { en: "Design to delivery: 14 features, 100+ screens" } },
         { type: "p", text: {
-          en: "UIX Engineer: a role that sits between design and delivery. Full ownership of user flows, wireframes, and high-fidelity screens across every feature. On the web platform, every one of those 100+ screens was also built in Vue.js. For Android, the work ended at design specification.",
-          id: "UIX Engineer: peran yang berada di antara desain dan pengerjaan. Memegang penuh alur pengguna, wireframe, dan layar high-fidelity di setiap fitur. Di platform web, setiap dari 100+ layar itu juga saya bangun dengan Vue.js. Untuk Android, pekerjaan berhenti pada spesifikasi desain." } },
+          en: "UIX Engineer: a role that sits between design and delivery. Full ownership of user flows, wireframes, and high-fidelity screens across every feature. On the web platform, every one of those 100+ screens was also built in Vue.js. For Android, the work ended at design specification." } },
         { type: "list", items: [
           "Authentication: Login, Register, Reset Password",
           "Dashboard, Dashboard with Event",
@@ -154,39 +151,33 @@ export const SITE = {
           "Kartu PNS Elektronik, Performance Report Yearly",
           "News, Notification"
         ] },
-        { type: "h", text: { en: "The data layer doesn't always cooperate", id: "Lapisan data tidak selalu bekerja sama" } },
+        { type: "h", text: { en: "The data layer doesn't always cooperate" } },
         { type: "p", text: {
-          en: "Government systems at this scale run on fixed infrastructure. The backend APIs were either locked or heavily constrained; modifying them was rarely an option, and many didn't return data in shapes that made for clean UI. The real design problem wasn't visual. It was structural.",
-          id: "Sistem pemerintah dalam skala ini berjalan di atas infrastruktur yang tetap. API backend terkunci atau sangat terbatas; mengubahnya jarang menjadi pilihan, dan banyak yang tidak mengembalikan data dalam bentuk yang mudah ditampilkan. Masalah desain yang sebenarnya bukan visual, melainkan struktural." } },
+          en: "Government systems at this scale run on fixed infrastructure. The backend APIs were either locked or heavily constrained; modifying them was rarely an option, and many didn't return data in shapes that made for clean UI. The real design problem wasn't visual. It was structural." } },
         { type: "list", items: [
-          { en: "Fixed APIs: the UI had to absorb whatever shape the API returned: nulls, unexpected formats, delayed responses.", id: "API tetap: UI harus menyerap bentuk apa pun yang dikembalikan API: nilai null, format tak terduga, respons yang lambat." },
-          { en: "Scale pressure: any UX decision affects millions of users across thousands of institutions, many with limited digital literacy or slow connections.", id: "Tekanan skala: setiap keputusan UX berdampak pada jutaan pengguna di ribuan instansi, banyak di antaranya dengan literasi digital terbatas atau koneksi lambat." },
-          { en: "Two-week delivery: sprint review every two weeks, to design, build, and align with backend and frontend teams inside the same cycle.", id: "Rilis dua mingguan: sprint review setiap dua minggu untuk mendesain, membangun, dan menyelaraskan dengan tim backend dan frontend dalam satu siklus." }
+          { en: "Fixed APIs: the UI had to absorb whatever shape the API returned: nulls, unexpected formats, delayed responses." },
+          { en: "Scale pressure: any UX decision affects millions of users across thousands of institutions, many with limited digital literacy or slow connections." },
+          { en: "Two-week delivery: sprint review every two weeks, to design, build, and align with backend and frontend teams inside the same cycle." }
         ] },
         { type: "quote", text: {
-          en: "The answer wasn't to fight the backend. It was to absorb it: through deliberate loading states, fallback patterns, and micro-UX decisions that users never notice because they never see the seams.",
-          id: "Jawabannya bukan melawan backend, melainkan menyerapnya: lewat loading state yang disengaja, pola fallback, dan keputusan micro-UX yang tidak disadari pengguna karena mereka tidak pernah melihat sambungannya." } },
-        { type: "pair", items: [{ src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(2).avif" }, { src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(3).avif" }] },
-        { type: "h", text: { en: "Component discipline, sprint by sprint", id: "Disiplin komponen, sprint demi sprint" } },
+          en: "The answer wasn't to fight the backend. It was to absorb it: through deliberate loading states, fallback patterns, and micro-UX decisions that users never notice because they never see the seams." } },
+        { type: "pair", items: [{ src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(2).avif", alt: "MyASN BKN document submission and update data screens" }, { src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(3).avif", alt: "MyASN BKN competency, performance and grade point screens" }], caption: "Document submission and performance screens, designed around what the API could return." },
+        { type: "h", text: { en: "Component discipline, sprint by sprint" } },
         { type: "p", text: {
-          en: "Work ran in two-week sprints. Each cycle closed with a sprint review shared with backend and frontend teams, forcing early alignment on what was designed, what was buildable, and what actually shipped.",
-          id: "Pekerjaan berjalan dalam sprint dua mingguan. Setiap siklus ditutup dengan sprint review bersama tim backend dan frontend, yang memaksa keselarasan sejak awal tentang apa yang didesain, apa yang bisa dibangun, dan apa yang benar-benar dirilis." } },
+          en: "Work ran in two-week sprints. Each cycle closed with a sprint review shared with backend and frontend teams, forcing early alignment on what was designed, what was buildable, and what actually shipped." } },
         { type: "p", text: {
-          en: "Component discipline was the foundation. Every screen was designed against what the API could realistically return. Edge cases (empty states, error states, partial data) were spec'd alongside the happy path, not added later. On the code side, Vue components were kept tightly aligned with the design system, so across 100+ screens the gap between mockup and production stayed small enough to matter.",
-          id: "Disiplin komponen adalah fondasinya. Setiap layar didesain berdasarkan apa yang realistis dikembalikan API. Edge case (empty state, error state, data parsial) dispesifikasikan bersama happy path, bukan ditambahkan belakangan. Di sisi kode, komponen Vue dijaga tetap selaras dengan design system, sehingga di 100+ layar jarak antara mockup dan produksi tetap kecil." } },
-        { type: "h", text: { en: "The experience held", id: "Pengalaman yang bertahan" } },
+          en: "Component discipline was the foundation. Every screen was designed against what the API could realistically return. Edge cases (empty states, error states, partial data) were spec'd alongside the happy path, not added later. On the code side, Vue components were kept tightly aligned with the design system, so across 100+ screens the gap between mockup and production stayed small enough to matter." } },
+        { type: "h", text: { en: "The experience held" } },
         { type: "p", text: {
-          en: "MyASN BKN is in active use by civil servants across Indonesia, available on web and Android.",
-          id: "MyASN BKN dipakai aktif oleh ASN di seluruh Indonesia, tersedia di web dan Android." } },
+          en: "MyASN BKN is in active use by civil servants across Indonesia, available on web and Android." } },
         { type: "list", items: [
-          { en: "5M+ installs on the Play Store", id: "5 juta+ instalasi di Play Store" },
-          { en: "4-star rating from 18,500+ reviews", id: "Rating 4 bintang dari 18.500+ ulasan" },
-          { en: "100+ screens designed and built", id: "100+ layar didesain dan dibangun" }
+          { en: "5M+ installs on the Play Store" },
+          { en: "4-star rating from 18,500+ reviews" },
+          { en: "100+ screens designed and built" }
         ] },
         { type: "p", text: {
-          en: "A four-star rating for a government HR platform used under compliance pressure across thousands of institutions. Most of the low reviews are about server load during peak submission windows, not the UX.",
-          id: "Rating empat bintang untuk platform HR pemerintah yang dipakai di bawah tekanan kepatuhan di ribuan instansi. Sebagian besar ulasan rendah berkaitan dengan beban server saat periode pengajuan puncak, bukan UX-nya." } },
-        { type: "img", width: "wide", src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(4).avif" }
+          en: "A four-star rating for a government HR platform used under compliance pressure across thousands of institutions. Most of the low reviews are about server load during peak submission windows, not the UX." } },
+        { type: "img", width: "wide", src: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-(4).avif", alt: "MyASN BKN Kartu PNS Elektronik and notification screens on web and Android", caption: "Kartu PNS Elektronik and notifications, on web and Android." }
       ]
     },
     {
@@ -316,19 +307,25 @@ export const SITE = {
     { title: { en: "Indonesia's crypto trading ecosystem", id: "Ekosistem perdagangan kripto Indonesia" }, tag: "Writing", ratio: "4/5", mockup: "article",
       href: "https://medium.com/@paltigcsinaga/ekosistem-perdagangan-kripto-indonesia-556caafcc520" },
     { title: { en: "Currency color ramp", id: "Ramp warna Currency" }, tag: "System", project: "currency", ratio: "4/5", mockup: "ramp", src: null },
+    /* TODO: re-enable with real MyASN images
     { title: { en: "MyASN home", id: "Beranda MyASN" }, tag: "Mobile", project: "myasn", ratio: "9/16", mockup: "mobile", src: null },
+    */
     { title: { en: "Merchant settlement report", id: "Laporan settlement merchant" }, tag: "Product", project: "currency", ratio: "4/3", mockup: "chart", src: null },
     { title: { en: "Merchant dashboard, full page", id: "Dashboard merchant, halaman penuh" }, tag: "Product", project: "currency", ratio: "1440/4100", mockup: "console", src: null },
     { title: { en: "Button and input specs", id: "Spesifikasi tombol dan input" }, tag: "System", project: "currency", ratio: "1/1", mockup: "system", src: null },
     { title: { en: "KYC onboarding form", id: "Formulir onboarding KYC" }, tag: "Product", ratio: "3/4", mockup: "form", src: null },
     { title: { en: "Roha wordmark", id: "Wordmark Roha" }, tag: "Brand", project: "roha", ratio: "3/2", mockup: "type", src: null },
     { title: { en: "Review queue, concept", id: "Antrean review, konsep" }, tag: "Product", project: "ledger", ratio: "16/10", mockup: "console", src: null },
+    /* TODO: re-enable with real MyASN images
     { title: { en: "Leave request flow", id: "Alur pengajuan cuti" }, tag: "Mobile", project: "myasn", ratio: "9/16", mockup: "mobile", src: null },
+    */
     { title: { en: "Payment link checkout", id: "Checkout payment link" }, tag: "Product", ratio: "2/3", mockup: "form", src: null },
     { title: { en: "Neutral palette, dark", id: "Palet netral, gelap" }, tag: "System", project: "currency", ratio: "1/1", mockup: "ramp", src: null },
     { title: { en: "Volume trend widget", id: "Widget tren volume" }, tag: "Product", project: "ledger", ratio: "21/9", mockup: "chart", src: null },
     { title: { en: "Studio site hero", id: "Hero situs studio" }, tag: "Brand", project: "roha", ratio: "5/4", mockup: "type", src: null },
+    /* TODO: re-enable with real MyASN images
     { title: { en: "Document viewer", id: "Penampil dokumen" }, tag: "Mobile", project: "myasn", ratio: "1170/2532", mockup: "mobile", src: null },
+    */
     { title: { en: "Loading state motion study", id: "Studi motion loading state" }, tag: "Motion", ratio: "4/3", mockup: "motion", video: null, src: null }
   ],
 
