@@ -13,10 +13,22 @@ interface Props {
   description?: string;
   article?: boolean;
   image?: string;
+  noindex?: boolean;
 }
-const { lang, path, title, description, article = false, image } = Astro.props;
+const { lang, path, title, description, article = false, image, noindex = false } = Astro.props;
 const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} Portfolio`;
 const desc = description || SITE.heroSub.en.replace(/<[^>]+>/g, "");
+const isHome = path === "/" && !noindex;
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: SITE.name,
+  url: `https://${SITE.domain}/`,
+  jobTitle: "Product designer and frontend engineer",
+  email: SITE.email,
+  address: { "@type": "PostalAddress", addressLocality: "Jakarta", addressCountry: "ID" },
+  sameAs: SITE.socials.filter((s: any) => s.href).map((s: any) => s.href),
+};
 // Pages are built as folders, so the served URL ends in a slash.
 const slash = (p: string) => (p.endsWith("/") ? p : `${p}/`);
 const canonical = new URL(slash(lang === "id" ? `/id${path}` : path), Astro.site).href;
@@ -36,6 +48,7 @@ const ogImage = (() => {
     <title>{fullTitle}</title>
     <meta name="description" content={desc} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta property="og:type" content={article ? "article" : "website"} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={fullTitle} />
@@ -47,6 +60,7 @@ const ogImage = (() => {
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={desc} />
     <meta name="twitter:image" content={ogImage} />
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(person)} />}
     <meta name="theme-color" content="#F1F1EE" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#111213" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
