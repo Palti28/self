@@ -278,7 +278,7 @@ export const SITE = {
   shots: [
     { title: { en: "Sorrel Leather, leather goods e-commerce template", id: "Sorrel Leather, template e-commerce barang kulit" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/project/assets/sorrel-bag/cover-sorrel-leather.png",
-      href: "https://www.rohaworks.com/portfolio/sorrel-leather/" },
+      href: "https://www.rohaworks.com/templates/sorrel-leather/" },
     { title: { en: "Cute Things by Eca, clay charm e-commerce", id: "Cute Things by Eca, e-commerce clay charm" }, tag: "Web", project: "roha",
       src: "https://ik.imagekit.io/gorat/ctba/kc-5.avif", href: "https://www.rohaworks.com/templates/toys-charm/" },
     { title: { en: "Crypto exchanges don't hold your money", id: "Exchange kripto nggak pegang uang kamu" }, tag: "Motion", ratio: "9/16", mockup: "motion",
