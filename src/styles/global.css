@@ -551,6 +551,14 @@ body { transition: background-color 220ms var(--ease), color 220ms var(--ease); 
 .legal a { transition: color var(--t) var(--ease); }
 .legal a:hover { color: var(--ink); }
 
+/* ---------- Buttons and hero CTA ---------- */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 18px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px; transition: background var(--t) var(--ease), border-color var(--t) var(--ease), color var(--t) var(--ease); }
+.btn:hover, .btn:focus-visible { border-color: var(--ink-3); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.btn--solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn--solid:hover, .btn--solid:focus-visible { background: var(--ink); border-color: var(--ink); opacity: .85; }
+.btn sup { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+.hero__cta { grid-column: 1 / 8; grid-row: 2; display: flex; flex-wrap: wrap; gap: 10px; }
+
 /* ---------- CV request popup ---------- */
 .cv { border: 1px solid var(--line); border-radius: 14px; background: var(--paper); color: var(--ink); padding: 0; width: min(420px, calc(100vw - 32px)); box-shadow: var(--shadow); }
 .cv::backdrop { background: rgba(0, 0, 0, .45); }
@@ -567,6 +575,7 @@ body { transition: background-color 220ms var(--ease), color 220ms var(--ease); 
 /* ---------- Responsive ---------- */
 @media (max-width: 1099px) {
   .hero__sub { grid-column: 1 / 8; }
+  .hero__cta { grid-column: 1 / 9; }
   .cue { grid-column: 9 / -1; }
 }
 @media (max-width: 900px) {
@@ -594,7 +603,8 @@ body { transition: background-color 220ms var(--ease), color 220ms var(--ease); 
   .status__label { display: none; }
   .status__short { display: inline; }
 
-  .hero__sub, .cue { grid-column: 1 / -1; justify-self: start; }
+  .hero__sub, .cue, .hero__cta { grid-column: 1 / -1; justify-self: start; }
+  .hero__cta { grid-row: auto; }
   .hero__eyebrow .label:last-child { display: none; }
 
   .index__head { display: none; }

@@ -26,7 +26,7 @@ const readMins = Math.max(1, Math.round(words / 220));
 const sizes = { text: "(max-width: 760px) 100vw, 680px", wide: "(max-width: 760px) 100vw, 1040px", full: "100vw" } as Record<string, string>;
 ---
 
-<Base lang={lang} path={`/work/${p.slug}`} title={tr(p.title)} description={tr(p.subtitle)} article>
+<Base lang={lang} path={`/work/${p.slug}`} title={tr(p.title)} description={tr(p.subtitle)} image={p.image || undefined} article>
   <main>
     <article class="article wrap">
       <div class="prose">

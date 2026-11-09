@@ -12,9 +12,20 @@ interface Props {
   title?: string;
   description?: string;
   article?: boolean;
+  image?: string;
 }
-const { lang, path, title, description, article = false } = Astro.props;
+const { lang, path, title, description, article = false, image } = Astro.props;
 const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} Portfolio`;
+const desc = description || SITE.heroSub.en.replace(/<[^>]+>/g, "");
+// Pages are built as folders, so the served URL ends in a slash.
+const slash = (p: string) => (p.endsWith("/") ? p : `${p}/`);
+const canonical = new URL(slash(lang === "id" ? `/id${path}` : path), Astro.site).href;
+// ImageKit images get a 1200x630 crop; any other URL is used as is.
+const ogImage = (() => {
+  const u = image || SITE.ogImage;
+  if (!u.includes("ik.imagekit.io") || /[?&]tr=/.test(u)) return u;
+  return `${u}?tr=w-1200,h-630,fo-auto,f-jpg`;
+})();
 ---
 
 <!doctype html>
@@ -23,10 +34,24 @@ const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} Portfolio`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
     <title>{fullTitle}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={article ? "article" : "website"} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === "id" ? "id_ID" : "en_US"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#F1F1EE" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111213" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" hreflang="en" href={new URL(path, Astro.site)} />
-    <link rel="alternate" hreflang="id" href={new URL(`/id${path}`, Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(slash(path), Astro.site)} />
+    <link rel="alternate" hreflang="id" href={new URL(slash(`/id${path}`), Astro.site)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" />

@@ -48,6 +48,10 @@ const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
 
         <div class="hero__foot">
           <p class="hero__sub" set:html={L(SITE.heroSub, lang)} />
+          <div class="hero__cta">
+            <a class="btn btn--solid" href="#contact">{t("cta.start")}</a>
+            <a class="btn" href={SITE.whatsapp} target="_blank" rel="noopener">{t("cta.wa")}<sup>&#8599;</sup></a>
+          </div>
           <a class="cue" href="#work">
             <span>{t("cue")} <span class="tab">({pad(projects.length)})</span></span>
             <span class="cue__arrow" aria-hidden="true">
@@ -111,6 +115,7 @@ const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
           <span class="copy__email">{SITE.email}</span>
           <span class="copy__state">{t("copy.idle")}</span>
         </button>
+        <a class="btn" href={SITE.whatsapp} target="_blank" rel="noopener">{t("cta.wa")}<sup>&#8599;</sup></a>
         <p class="copy-note">{t("copy.note")}</p>
       </div>
     </section>

@@ -23,6 +23,10 @@ export const SITE = {
      and a srcset. Add your custom CNAME here if you use one. */
   imagekit: { hosts: ["ik.imagekit.io"], widths: [480, 800, 1200, 1600] },
 
+  /* Default share image (Open Graph / Twitter). 1200x630, absolute URL.
+     Replace with a purpose-made card when you have one. */
+  ogImage: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-cover.avif?tr=w-1200,h-630,fo-auto,f-jpg",
+
   heroSub: {
     en: "<strong>Product designer and frontend engineer.</strong> I design fintech products and the component systems that keep them consistent, then write the code that ships them.",
     id: "<strong>Product designer dan frontend engineer.</strong> Saya merancang produk fintech beserta sistem komponen yang menjaganya tetap konsisten, lalu menulis kode yang merilisnya."
