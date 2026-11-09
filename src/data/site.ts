@@ -268,11 +268,18 @@ export const SITE = {
                 A video item can also have href: the viewer then shows
                 "Open original".
 
+     Add still: true to a video item to show only its src image on the wall
+     (no autoplay); the video still plays in the viewer.
+
      ratio is optional: leave it out and the wall uses the media's own shape.
      Very tall images (full-page captures) are cropped from the top on the wall
      and scroll in the viewer. The first `featured.archive` items appear on home.
      project links an item to a case study. */
   shots: [
+    { title: { en: "Sorrel Leather, leather goods e-commerce template", id: "Sorrel Leather, template e-commerce barang kulit" }, tag: "Web", still: true,
+      src: "https://ik.imagekit.io/gorat/project/assets/sorrel-bag/cover-sorrel-leather.png",
+      video: "https://ik.imagekit.io/gorat/gorat/archive/57d350e0057e0613.mp4",
+      href: "https://www.rohaworks.com/templates/sorrel-leather/" },
     { title: { en: "Cute Things by Eca, clay charm e-commerce", id: "Cute Things by Eca, e-commerce clay charm" }, tag: "Web", project: "roha",
       src: "https://ik.imagekit.io/gorat/ctba/kc-5.avif", href: "https://www.rohaworks.com/templates/toys-charm/" },
     { title: { en: "Crypto exchanges don't hold your money", id: "Exchange kripto nggak pegang uang kamu" }, tag: "Motion", ratio: "9/16", mockup: "motion",

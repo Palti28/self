@@ -21,7 +21,7 @@ const badge: Record<string, string> = {
     return (
       <Tag class={`shot shot--${sh.kind}`} data-i={sh.i} data-key={sh.tag} aria-label={`${t(verb[sh.kind])} ${sh.title}`} {...attrs}>
         <div class="shot__frame">
-          <Plate item={sh} lang={lang} w={800} sizes="(max-width: 760px) 50vw, 25vw" />
+          <Plate item={sh.still ? { ...sh, video: null } : sh} lang={lang} w={800} sizes="(max-width: 760px) 50vw, 25vw" />
           <span class="shot__zoom" aria-hidden="true" set:html={badge[sh.kind]} />
         </div>
         <span class="shot__cap"><span>{sh.title}</span><span>{sh.tagLabel}</span></span>
