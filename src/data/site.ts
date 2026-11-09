@@ -276,10 +276,9 @@ export const SITE = {
      and scroll in the viewer. The first `featured.archive` items appear on home.
      project links an item to a case study. */
   shots: [
-    { title: { en: "Sorrel Leather, leather goods e-commerce template", id: "Sorrel Leather, template e-commerce barang kulit" }, tag: "Web", still: true,
+    { title: { en: "Sorrel Leather, leather goods e-commerce template", id: "Sorrel Leather, template e-commerce barang kulit" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/project/assets/sorrel-bag/cover-sorrel-leather.png",
-      video: "https://ik.imagekit.io/gorat/gorat/archive/57d350e0057e0613.mp4",
-      href: "https://www.rohaworks.com/templates/sorrel-leather/" },
+      href: "https://www.rohaworks.com/portfolio/sorrel-leather/" },
     { title: { en: "Cute Things by Eca, clay charm e-commerce", id: "Cute Things by Eca, e-commerce clay charm" }, tag: "Web", project: "roha",
       src: "https://ik.imagekit.io/gorat/ctba/kc-5.avif", href: "https://www.rohaworks.com/templates/toys-charm/" },
     { title: { en: "Crypto exchanges don't hold your money", id: "Exchange kripto nggak pegang uang kamu" }, tag: "Motion", ratio: "9/16", mockup: "motion",
