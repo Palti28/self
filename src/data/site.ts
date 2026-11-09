@@ -330,10 +330,14 @@ export const SITE = {
   ],
 
   socials: [
-    { label: "GitHub", href: "https://github.com/" },
+    /* LinkedIn and X are hidden for now. Add them back by uncommenting.
     { label: "LinkedIn", href: "https://www.linkedin.com/" },
-    { label: "X", href: "https://x.com/" },
-    { label: "Read.cv", href: "https://read.cv/" },
-    { label: "Figma", href: "https://www.figma.com/" }
-  ]
+    { label: "X", href: "https://x.com/" }, */
+    { label: "Threads", href: "https://www.threads.com/@rohaworks" },
+    { label: "Dribbble", href: "https://dribbble.com/palti28" },
+    { label: "Figma", href: "https://www.figma.com/@paltigorat" },
+    /* action: "cv" opens the "request my CV" popup instead of a link. */
+    { label: "Read CV", action: "cv" }
+  ],
+  whatsapp: "https://wa.me/6281932594187"
 };

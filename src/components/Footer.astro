@@ -11,7 +11,11 @@ const t = useT(lang);
   <div class="foot">
     <ul class="socials">
       {SITE.socials.map((s) => (
-        <li><a href={s.href} target="_blank" rel="noopener">{L(s.label, lang)}<sup>&#8599;</sup></a></li>
+        <li>
+          {(s as any).action === "cv"
+            ? <button type="button" class="socials__btn" data-cv-open aria-haspopup="dialog">{L(s.label, lang)}</button>
+            : <a href={(s as any).href} target="_blank" rel="noopener">{L(s.label, lang)}<sup>&#8599;</sup></a>}
+        </li>
       ))}
     </ul>
     <div class="legal">
@@ -21,3 +25,22 @@ const t = useT(lang);
     </div>
   </div>
 </footer>
+
+<dialog class="cv" id="cv-dialog" aria-labelledby="cv-title">
+  <form method="dialog" class="cv__box">
+    <h2 id="cv-title">{t("cv.title")}</h2>
+    <p>{t("cv.body")}</p>
+    <div class="cv__actions">
+      <a class="cv__btn" href={`mailto:${SITE.email}?subject=${encodeURIComponent(t("cv.subject"))}`}>{t("cv.email")}</a>
+      <a class="cv__btn" href={`${SITE.whatsapp}?text=${encodeURIComponent(t("cv.text"))}`} target="_blank" rel="noopener">{t("cv.wa")}<sup>&#8599;</sup></a>
+    </div>
+    <button class="cv__close" value="close" aria-label={t("cv.close")}>{t("cv.close")}</button>
+  </form>
+</dialog>
+
+<script>
+  const dlg = document.getElementById("cv-dialog") as HTMLDialogElement | null;
+  document.querySelectorAll("[data-cv-open]").forEach((b) => b.addEventListener("click", () => dlg?.showModal()));
+  // Click on the backdrop closes the popup.
+  dlg?.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+</script>
