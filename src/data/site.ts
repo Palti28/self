@@ -305,7 +305,8 @@ export const SITE = {
     { title: { en: "Crypto exchanges don't hold your money", id: "Exchange kripto nggak pegang uang kamu" }, tag: "Motion", ratio: "9/16",
       src: "https://ik.imagekit.io/gorat/gorat/archive/erticle-crypto-ina.jpg",
       video: "https://www.instagram.com/reel/DevWXaZsSVo/" },
-    { title: { en: "Indonesia's crypto trading ecosystem", id: "Ekosistem perdagangan kripto Indonesia" }, tag: "Writing", ratio: "4/5", mockup: "article",
+    { title: { en: "Indonesia's crypto trading ecosystem", id: "Ekosistem perdagangan kripto Indonesia" }, tag: "Writing",
+      src: "https://ik.imagekit.io/gorat/gorat/archive/article-crypto-ina-read.png",
       href: "https://medium.com/@paltigcsinaga/ekosistem-perdagangan-kripto-indonesia-556caafcc520" },
     { title: { en: "Currency color ramp", id: "Ramp warna Currency" }, tag: "System", project: "currency", ratio: "4/5", mockup: "ramp", src: null },
     /* TODO: re-enable with real MyASN images
