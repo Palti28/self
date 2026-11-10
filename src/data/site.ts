@@ -301,6 +301,9 @@ export const SITE = {
      and scroll in the viewer. The first `featured.archive` items appear on home.
      project links an item to a case study. */
   shots: [
+    { title: { en: "Roha brand language and design system", id: "Bahasa brand dan design system Roha" }, tag: "Brand", project: "roha",
+      src: "https://ik.imagekit.io/gorat/gorat/archive/roha-brand-lang.png",
+      href: "https://www.rohaworks.com/work/roha-design-system/" },
     { title: { en: "Sorrel Leather, leather goods e-commerce template", id: "Sorrel Leather, template e-commerce barang kulit" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/project/assets/sorrel-bag/cover-sorrel-leather.png",
       href: "https://www.rohaworks.com/templates/sorrel-leather/" },
