@@ -82,12 +82,12 @@ export const SITE = {
       facts: [
         [{ en: "Role", id: "Peran" }, "Product designer"],
         [{ en: "Timeline", id: "Periode" }, { en: "2019 to 2023", id: "2019 hingga 2023" }],
-        [{ en: "Scope", id: "Cakupan" }, "Foundations + 25 component families"],
+        [{ en: "Scope", id: "Cakupan" }, "Foundations and 25 component families"],
         [{ en: "Tool", id: "Perangkat" }, "Figma, variants and styles"]
       ],
       /* Case study copy and images come from the DOKU Design System sheet (Figma library v1.0.0). */
       body: [
-        { type: "p", text: { en: "One shared Figma library behind DOKU's payment products. It covers brand color, type and elevation, then the 25 component families that dashboards, checkout and merchant tools are built from." } },
+        { type: "p", text: { en: "The library starts with brand color, type and elevation. On top of those sit the 25 component families that DOKU's dashboards, checkout and merchant tools are built from." } },
         { type: "h", text: { en: "What the library holds" } },
         { type: "p", text: { en: "Foundations come first and every component draws from them. Each component page carries its own guideline frame, so a designer can pick a variant and read when to use it in the same place." } },
         { type: "list", items: [
@@ -100,15 +100,15 @@ export const SITE = {
         { type: "img", width: "wide", ratio: "2000/1005", src: "/work/currency/overview.webp", alt: "Overview of the DOKU Figma library: foundations, extras and the component index with variants per set", caption: "Foundations: logo, color, type, icons and shadow. Extras: captcha, email template and a sample page." },
         { type: "h", text: { en: "Color" } },
         { type: "p", text: { en: "Red is the primary brand color and carries every primary action. Tosca and orange support it, and black runs as a ten step neutral for text, borders and surfaces. Each ramp has nine tints and shades with 50 as the base." } },
-        { type: "img", width: "wide", ratio: "2000/1403", src: "/work/currency/color.webp", alt: "Red, tosca, orange and black color ramps with hex values, and the color roles table", caption: "Shades and tints, and the role each color plays in the product." },
+        { type: "img", width: "wide", ratio: "2000/1403", src: "/work/currency/color.webp", alt: "Red, tosca, orange and black color ramps with hex values, and the color roles table", caption: "The four ramps with hex values, and the role table that assigns colors to actions, text, states and borders." },
         { type: "h", text: { en: "Type" } },
-        { type: "p", text: { en: "A single family, DIN Next LT Pro, in three weights. Its narrow, engineered letterforms keep amounts and account numbers compact in dense dashboards. Line heights sit on a 4 px grid." } },
+        { type: "p", text: { en: "A single family, DIN Next LT Pro, in three weights. Its narrow letterforms keep amounts and account numbers compact in dense dashboards. Line heights sit on a 4 px grid." } },
         { type: "img", width: "wide", ratio: "2000/1355", src: "/work/currency/type.webp", alt: "Type scale from Title/H1 48/72 down to Caption/S 10/12, with regular, medium and bold weights", caption: "Shown in Barlow, the closest web-available match to DIN Next LT Pro." },
         { type: "h", text: { en: "Elevation" } },
         { type: "p", text: { en: "Seven shadow styles, from a hairline lift for inputs to the deep shadow behind modals. Higher layers sit closer to the user and cast softer, wider shadows." } },
         { type: "img", width: "wide", ratio: "2000/624", src: "/work/currency/elevation.webp", alt: "Seven shadow styles from Shadow/xs to Shadow/3xl", caption: "Cards use sm, popovers lg, modals 3xl." },
         { type: "h", text: { en: "Buttons" } },
-        { type: "p", text: { en: "The largest set in the library, with 216 variants. Four variants share one anatomy, so a single component covers every action on a page, from Pay now to an icon-only delete. Loading keeps the button's width so layouts never jump." } },
+        { type: "p", text: { en: "The largest set in the library, with 216 variants. Four variants share one anatomy, so a single component covers every action on a page, from Pay now to an icon-only delete. In the loading state the button keeps its width, so nothing around it shifts while a payment is processing." } },
         { type: "img", width: "wide", ratio: "2000/821", src: "/work/currency/buttons.webp", alt: "Primary, secondary, normal and text buttons in default, hover, pressed, disabled and loading states, with sizes and types", caption: "Variant by state, three sizes and four types." },
         { type: "h", text: { en: "Form and input" } },
         { type: "p", text: { en: "Every field shares one frame: label, control, helper. States change only the border and the helper line, so validation reads the same across checkout, onboarding and settings." } },
@@ -120,11 +120,10 @@ export const SITE = {
         { type: "p", text: { en: "Status always uses the same four tones: success, warning, error and neutral. A badge labels a record, a toast reports what just happened, and a modal stops the flow only when a choice cannot be undone." } },
         { type: "img", width: "wide", ratio: "2000/1180", src: "/work/currency/feedback.webp", alt: "Status badges, inline and flag toasts, and a confirmation modal", caption: "Badge 4, toast 12 and modal 12 variants." },
         { type: "h", text: { en: "Tabs, table and cards" } },
-        { type: "p", text: { en: "The merchant dashboard runs on these three. The table is assembled from ten cell types, so a new report is a matter of picking columns, not drawing rows." } },
+        { type: "p", text: { en: "The merchant dashboard runs on these three. The table is assembled from ten cell types, so a new report is built by choosing the columns it needs." } },
         { type: "img", width: "wide", ratio: "2000/1482", src: "/work/currency/data.webp", alt: "Default and pill tabs, a transactions table built from cell types, and dashboard cards", caption: "Tabs 5, table cells 10 and cards 5 variants." },
-        { type: "quote", text: { en: "A change to RED50 or Body M lands everywhere at once." } },
-        { type: "h", text: { en: "One library, every surface" } },
-        { type: "p", text: { en: "Foundations feed the components, and the components feed checkout, the merchant dashboard and internal tools." } }
+        { type: "h", text: { en: "Where the library is used" } },
+        { type: "p", text: { en: "Foundations feed the components, and the components feed checkout, the merchant dashboard and internal tools. Changing a foundation such as RED50 or Body M updates every file that uses it." } }
       ]
     },
     {
