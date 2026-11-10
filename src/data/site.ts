@@ -21,7 +21,7 @@ export const SITE = {
 
   /* Home "Selected work" ledger, in the order listed. Projects with a cover image get the
      large entry (image + facts); the others are shorter rows. */
-  selected: ["myasn", "currency", "loka", "roha"],
+  selected: ["myasn", "currency", "loka"],
 
   /* ImageKit: any URL on these hosts gets resized automatically (?tr=w-800 etc.)
      and a srcset. Add your custom CNAME here if you use one. */
@@ -61,8 +61,7 @@ export const SITE = {
   /* Projects. Each one gets a detail page at /work/<slug> (and /id/work/<slug>).
      Body blocks: p, h, quote, list, sep, img { width: text | wide | full }, pair.
      Images: set src (or image for the cover) to a URL. ratio is optional:
-     "16/9", "1440/900" (pixel size), or leave it out to use the image's own shape.
-     Case study copy below is placeholder. Replace with your own. */
+     "16/9", "1440/900" (pixel size), or leave it out to use the image's own shape. */
   projects: [
     {
       slug: "currency",
@@ -274,43 +273,6 @@ export const SITE = {
         { type: "h", text: { en: "Color and status" } },
         { type: "p", text: { en: "One orange does the action work: primary buttons, the active tab and links. Green is kept for progress and finished states, and red for promos and sold out items. That keeps the colors that mean something from competing with the one that asks for a tap." } }
       ]
-    },
-    {
-      slug: "roha",
-      title: "Roha Studio",
-      subtitle: { en: "Identity and website for a one-person design studio.", id: "Identitas dan situs web untuk studio desain satu orang." },
-      category: { en: "Identity and website", id: "Identitas dan situs web" },
-      role: { en: "Founder, designer", id: "Pendiri, desainer" },
-      year: "2025",
-      date: "Feb 2025",
-      tags: ["Brand", "Type", "Web"],
-      ratio: "16/9", mockup: "type", image: null,
-      link: { label: "rohaworks.com", href: "https://rohaworks.com" },
-      facts: [
-        [{ en: "Role", id: "Peran" }, { en: "Founder", id: "Pendiri" }],
-        [{ en: "Year", id: "Tahun" }, "2025"],
-        [{ en: "Scope", id: "Cakupan" }, { en: "Wordmark, type, site", id: "Wordmark, tipografi, situs" }],
-        ["Stack", "Astro"]
-      ],
-      body: [
-        { type: "p", text: {
-          en: "Roha is the name I work under for identity and web projects. The brand had one job: look like the work, quiet and exact, with nothing added for show.",
-          id: "Roha adalah nama yang saya pakai untuk proyek identitas dan web. Brand ini punya satu tugas: terlihat seperti karyanya, tenang dan presisi, tanpa tambahan sekadar untuk pamer." } },
-        { type: "img", width: "wide", ratio: "3/2", mockup: "type", src: null, caption: {
-          en: "Wordmark on its baseline grid.",
-          id: "Wordmark di atas grid baseline-nya." } },
-        { type: "h", text: { en: "A wordmark that sits on the grid", id: "Wordmark yang berpijak pada grid" } },
-        { type: "p", text: {
-          en: "The letters are tightened to the same baseline unit the site uses for spacing. The mark and the layout share one measure, so the site feels built rather than decorated.",
-          id: "Huruf-hurufnya dirapatkan ke unit baseline yang sama dengan yang dipakai situs untuk spacing. Logo dan layout berbagi satu ukuran, sehingga situs terasa dibangun, bukan dihias." } },
-        { type: "pair", items: [{ ratio: "4/5", mockup: "ramp", src: null }, { ratio: "4/5", mockup: "type", src: null }], caption: {
-          en: "Palette and type specimen.",
-          id: "Palet dan spesimen tipografi." } },
-        { type: "sep" },
-        { type: "p", text: {
-          en: "<em>Placeholder copy.</em> Replace with the real story behind the studio.",
-          id: "<em>Teks placeholder.</em> Ganti dengan cerita sebenarnya di balik studio ini." } }
-      ]
     }
   ],
 
@@ -348,19 +310,19 @@ export const SITE = {
      and scroll in the viewer. The first `featured.archive` items appear on home.
      project links an item to a case study. */
   shots: [
-    { title: { en: "Roha brand language and design system", id: "Bahasa brand dan design system Roha" }, tag: "Brand", project: "roha",
+    { title: { en: "Roha brand language and design system", id: "Bahasa brand dan design system Roha" }, tag: "Brand",
       src: "https://ik.imagekit.io/gorat/gorat/archive/roha-brand-lang.png",
       href: "https://www.rohaworks.com/work/roha-design-system/" },
     { title: { en: "Sorrel Leather, leather goods e-commerce template", id: "Sorrel Leather, template e-commerce barang kulit" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/project/assets/sorrel-bag/cover-sorrel-leather.png",
       href: "https://www.rohaworks.com/templates/sorrel-leather/" },
-    { title: { en: "Pixel Forge, creative agency website concept", id: "Pixel Forge, konsep website agensi kreatif" }, tag: "Web", project: "roha",
+    { title: { en: "Pixel Forge, creative agency website concept", id: "Pixel Forge, konsep website agensi kreatif" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/agency/image-cover.avif", href: "https://www.rohaworks.com/templates/creative-agency/" },
-    { title: { en: "Bima Arsana, photographer portfolio website", id: "Bima Arsana, website portofolio fotografer" }, tag: "Web", project: "roha", ratio: "390/844",
+    { title: { en: "Bima Arsana, photographer portfolio website", id: "Bima Arsana, website portofolio fotografer" }, tag: "Web", ratio: "390/844",
       src: "/archive/bima-arsana.png", href: "https://www.rohaworks.com/templates/bima-arsana/" },
-    { title: { en: "Teduh Residence, housing cluster marketing site", id: "Teduh Residence, situs pemasaran klaster perumahan" }, tag: "Web", project: "roha",
+    { title: { en: "Teduh Residence, housing cluster marketing site", id: "Teduh Residence, situs pemasaran klaster perumahan" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/project/assets/residence/cover-teduh-residence-dev.png", href: "https://www.rohaworks.com/templates/teduh-residence/" },
-    { title: { en: "Cute Things by Eca, clay charm e-commerce", id: "Cute Things by Eca, e-commerce clay charm" }, tag: "Web", project: "roha",
+    { title: { en: "Cute Things by Eca, clay charm e-commerce", id: "Cute Things by Eca, e-commerce clay charm" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/ctba/kc-5.avif", href: "https://www.rohaworks.com/templates/toys-charm/" },
     { title: { en: "Crypto exchanges don't hold your money", id: "Exchange kripto nggak pegang uang kamu" }, tag: "Motion", ratio: "9/16",
       src: "https://ik.imagekit.io/gorat/gorat/archive/erticle-crypto-ina.jpg",
@@ -376,7 +338,7 @@ export const SITE = {
     { title: { en: "Merchant dashboard, full page", id: "Dashboard merchant, halaman penuh" }, tag: "Product", project: "currency", ratio: "1440/4100", mockup: "console", src: null },
     { title: { en: "Button and input specs", id: "Spesifikasi tombol dan input" }, tag: "System", project: "currency", ratio: "1/1", mockup: "system", src: null },
     { title: { en: "KYC onboarding form", id: "Formulir onboarding KYC" }, tag: "Product", ratio: "3/4", mockup: "form", src: null },
-    { title: { en: "Roha wordmark", id: "Wordmark Roha" }, tag: "Brand", project: "roha", ratio: "3/2", mockup: "type", src: null },
+    { title: { en: "Roha wordmark", id: "Wordmark Roha" }, tag: "Brand", ratio: "3/2", mockup: "type", src: null },
     { title: { en: "Loka home", id: "Beranda Loka" }, tag: "Mobile", project: "loka", ratio: "10/21", src: "/work/loka/screen-home.webp" },
     /* TODO: re-enable with real MyASN images
     { title: { en: "Leave request flow", id: "Alur pengajuan cuti" }, tag: "Mobile", project: "myasn", ratio: "9/16", mockup: "mobile", src: null },
@@ -384,7 +346,7 @@ export const SITE = {
     { title: { en: "Payment link checkout", id: "Checkout payment link" }, tag: "Product", ratio: "2/3", mockup: "form", src: null },
     { title: { en: "Neutral palette, dark", id: "Palet netral, gelap" }, tag: "System", project: "currency", ratio: "1/1", mockup: "ramp", src: null },
     { title: { en: "Loka delivery tracking", id: "Pelacakan pesanan Loka" }, tag: "Mobile", project: "loka", ratio: "10/21", src: "/work/loka/screen-tracking.webp" },
-    { title: { en: "Studio site hero", id: "Hero situs studio" }, tag: "Brand", project: "roha", ratio: "5/4", mockup: "type", src: null },
+    { title: { en: "Studio site hero", id: "Hero situs studio" }, tag: "Brand", ratio: "5/4", mockup: "type", src: null },
     /* TODO: re-enable with real MyASN images
     { title: { en: "Document viewer", id: "Penampil dokumen" }, tag: "Mobile", project: "myasn", ratio: "1170/2532", mockup: "mobile", src: null },
     */
