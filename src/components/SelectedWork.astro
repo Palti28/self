@@ -1,6 +1,6 @@
 ---
 /* Home "Selected work" ledger: numbered entries on hairline rules.
-   The first project is the lead entry (image + facts); the rest are short rows. */
+   Projects with a cover image get the large entry (image + facts); the rest are short rows. */
 import Plate from "./Plate.astro";
 import { L, url, useT, type Lang } from "../lib/i18n";
 import { pad } from "../lib/media";
@@ -25,19 +25,18 @@ const items = projects.map((p, i) => ({
   role: tr(p.role),
   years: years(p),
 }));
-const [lead, ...rest] = items;
 ---
 
 <ol class="ledger">
-  {lead && (
+  {items.map((p) => p.image ? (
     <li class="ledger__item ledger__item--lead">
-      <span class="ledger__n tab" aria-hidden="true">{lead.n}</span>
+      <span class="ledger__n tab" aria-hidden="true">{p.n}</span>
       <div class="ledger__body">
-        <p class="ledger__kicker">{lead.category} &middot; <span class="tab">{lead.years}</span></p>
-        <h3 class="ledger__title"><a href={lead.href}>{lead.title}</a></h3>
-        <p class="ledger__desc">{lead.subtitle}</p>
+        <p class="ledger__kicker">{p.category} &middot; <span class="tab">{p.years}</span></p>
+        <h3 class="ledger__title"><a href={p.href}>{p.title}</a></h3>
+        <p class="ledger__desc">{p.subtitle}</p>
         <dl class="ledger__facts" aria-label={t("work.facts")}>
-          {(lead.lead || lead.facts || []).map(([k, v]: any) => (
+          {(p.lead || p.facts || []).map(([k, v]: any) => (
             <div>
               <dt>{tr(k)}</dt>
               <dd>
@@ -48,14 +47,13 @@ const [lead, ...rest] = items;
             </div>
           ))}
         </dl>
-        <a class="ledger__link" href={lead.href}>{t("row.read")}<span class="vh"> {lead.title}</span></a>
+        <a class="ledger__link" href={p.href}>{t("row.read")}<span class="vh"> {p.title}</span></a>
       </div>
-      <a class="ledger__media" href={lead.href} tabindex="-1" aria-hidden="true">
-        <Plate item={{ ...lead, title: lead.title }} lang={lang} w={1000} sizes="(max-width: 760px) 100vw, 520px" dims />
+      <a class="ledger__media" href={p.href} tabindex="-1" aria-hidden="true">
+        <Plate item={p} lang={lang} w={1000} sizes="(max-width: 760px) 100vw, 520px" dims />
       </a>
     </li>
-  )}
-  {rest.map((p) => (
+  ) : (
     <li class="ledger__item">
       <span class="ledger__n tab" aria-hidden="true">{p.n}</span>
       <div class="ledger__main">
