@@ -3,12 +3,12 @@ import Base from "../../../layouts/Base.astro";
 import Plate from "../../../components/Plate.astro";
 import ArchiveWall from "../../../components/ArchiveWall.astro";
 import { SITE } from "../../../data/site";
-import { L, LANGS, url, useT, type Lang } from "../../../lib/i18n";
+import { L, BUILD_LANGS, url, useT, type Lang } from "../../../lib/i18n";
 import { projects, shots, shotsOf } from "../../../lib/content";
 import { pad } from "../../../lib/media";
 
 export const getStaticPaths = () =>
-  LANGS.flatMap((lang) =>
+  BUILD_LANGS.flatMap((lang) =>
     projects.map((p) => ({ params: { lang: lang === "en" ? undefined : lang, slug: p.slug }, props: { lang, p } })),
   );
 
@@ -39,7 +39,7 @@ const sizes = { text: "(max-width: 760px) 100vw, 680px", wide: "(max-width: 760p
           <span class="byline__who"><span>{SITE.name}</span><span class="byline__meta">{readMins} {t("detail.read")} &middot; {tr(p.date) || p.year}</span></span>
           {links.length > 0 && (
             <span class="byline__links">
-              {links.map((l) => <a class="byline__link" href={l.href} target="_blank" rel="noopener">{tr(l.label)} &#8599;</a>)}
+              {links.map((l) => <a class="byline__link" href={l.href} target="_blank" rel="noopener">{tr(l.label)}<span class="vh"> {t("a11y.newTab")}</span></a>)}
             </span>
           )}
         </div>

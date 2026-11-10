@@ -10,14 +10,18 @@ export const SITE = {
   current: { en: "Financial regulation", id: "Regulasi keuangan" },
   availability: {
     open: true,
-    label: { en: "Available for Q4 projects", id: "Terbuka untuk proyek Q4" },
-    short: { en: "Q4 open", id: "Q4 buka" }
+    label: { en: "Available for projects", id: "Terbuka untuk proyek Q4" },
+    short: { en: "Open", id: "Q4 buka" }
   },
   author: { initials: "GS", avatar: null },
 
   /* How many items the home page shows before "View all".
      The full lists live at /work and /archive. */
   featured: { work: 4, archive: 8 },
+
+  /* Home "Selected work" ledger: the first slug is the lead entry (image + facts),
+     the rest are shorter rows. Order is as listed here. */
+  selected: ["myasn", "currency", "roha", "ledger"],
 
   /* ImageKit: any URL on these hosts gets resized automatically (?tr=w-800 etc.)
      and a srcset. Add your custom CNAME here if you use one. */
@@ -130,6 +134,13 @@ export const SITE = {
       tags: ["Web", "Android", "Gov"],
       ratio: "16/10", mockup: "mobile", image: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-cover.avif",
       link: { label: "MyASN · Google Play", href: "https://play.google.com/store/apps/details?id=com.nudi.bkn.sapk&hl=id" },
+      /* Facts for the lead entry on the home page. Figures come from the case study below. */
+      lead: [
+        ["Role", "UIX Engineer"],
+        ["Scope", "100+ screens designed and built"],
+        ["Platform", "Web, Android"],
+        ["Google Play", { text: "5M+ installs", href: "https://play.google.com/store/apps/details?id=com.nudi.bkn.sapk&hl=id" }]
+      ],
       facts: [
         [{ en: "Role", id: "Peran" }, "UIX Engineer"],
         [{ en: "Client", id: "Klien" }, "BKN"],

@@ -1,8 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
-import WorkIndex from "../../components/WorkIndex.astro";
+import SelectedWork from "../../components/SelectedWork.astro";
 import ArchiveWall from "../../components/ArchiveWall.astro";
-import ViewSwitch from "../../components/ViewSwitch.astro";
 import MoreLink from "../../components/MoreLink.astro";
 import { SITE } from "../../data/site";
 import { L, langPaths, url, useT, type Lang } from "../../lib/i18n";
@@ -13,13 +12,17 @@ export const getStaticPaths = langPaths;
 const lang = Astro.props.lang as Lang;
 const t = useT(lang);
 
-const work = projects.slice(0, SITE.featured.work);
+// Selected work: the order set in SITE.selected (lead entry first), capped at featured.work.
+const work = (SITE.selected as string[])
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter(Boolean)
+  .slice(0, SITE.featured.work);
 const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
 ---
 
 <Base lang={lang} path="/" description={L(SITE.heroSub, lang).replace(/<[^>]+>/g, "")}>
   <main>
-    <section class="hero wrap" id="top">
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
       <div class="grid">
         <div class="hero__eyebrow">
           <span class="label">{t("hero.portfolio")} <span class="tab">{new Date().getFullYear()}</span></span>
@@ -27,7 +30,7 @@ const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
         </div>
 
         <div class="hero__head">
-          <h1 class="display">
+          <h1 class="display" id="hero-title">
             <span>{t("hero.l1")}</span>
             <span class="soft">{t("hero.l2")}</span>
             <span class="soft">{t("hero.l3")}</span>
@@ -39,18 +42,11 @@ const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
           </dl>
         </div>
 
-        <p class="spec" aria-hidden="true">
-          <span><b>Display</b> Geist 500</span>
-          <span><b>Size</b> clamp 40 / 148px</span>
-          <span><b>Tracking</b> &minus;4.8%</span>
-          <span><b>Leading</b> 0.93</span>
-        </p>
-
         <div class="hero__foot">
           <p class="hero__sub" set:html={L(SITE.heroSub, lang)} />
           <div class="hero__cta">
             <a class="btn btn--solid" href="#contact">{t("cta.start")}</a>
-            <a class="btn" href={SITE.whatsapp} target="_blank" rel="noopener">{t("cta.wa")}<sup>&#8599;</sup></a>
+            <a class="btn" href={SITE.whatsapp} target="_blank" rel="noopener">{t("cta.wa")}<span class="vh"> {t("a11y.newTab")}</span></a>
           </div>
           <a class="cue" href="#work">
             <span>{t("cue")} <span class="tab">({pad(projects.length)})</span></span>
@@ -68,9 +64,8 @@ const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
           <span class="label">{t("work.label")}</span>
           <h2 class="h2" id="work-title">{t("work.title")}<sup class="tab">{pad(work.length)}</sup></h2>
         </div>
-        <ViewSwitch lang={lang} />
       </div>
-      <WorkIndex projects={work} lang={lang} />
+      <SelectedWork projects={work} lang={lang} />
       <MoreLink href={url(lang, "/work")} label={t("work.more")} count={pad(projects.length)} />
     </section>
 
@@ -115,7 +110,7 @@ const wall = shotsOf(shots.slice(0, SITE.featured.archive), lang);
           <span class="copy__email">{SITE.email}</span>
           <span class="copy__state">{t("copy.idle")}</span>
         </button>
-        <a class="btn" href={SITE.whatsapp} target="_blank" rel="noopener">{t("cta.wa")}<sup>&#8599;</sup></a>
+        <a class="btn" href={SITE.whatsapp} target="_blank" rel="noopener">{t("cta.wa")}<span class="vh"> {t("a11y.newTab")}</span></a>
         <p class="copy-note">{t("copy.note")}</p>
       </div>
     </section>

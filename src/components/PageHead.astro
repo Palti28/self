@@ -3,9 +3,9 @@ interface Props { back: { href: string; label: string }; label: string; title: s
 const { back, label, title, count, intro } = Astro.props;
 ---
 
-<section class="wrap page-head">
+<section class="wrap page-head" aria-labelledby="page-title">
   <a class="crumb" href={back.href}>&larr; {back.label}</a>
   <span class="label">{label}</span>
-  <h1 class="page-title">{title}<sup class="tab">{count}</sup></h1>
+  <h1 class="page-title" id="page-title">{title}<sup class="tab">{count}</sup></h1>
   <p class="page-intro">{intro}</p>
 </section>

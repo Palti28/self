@@ -6,7 +6,7 @@ export type Media = {
   title?: string; alt?: string; ratio?: string | null; mockup?: string;
   src?: string | null; image?: string | null; video?: string | null; href?: string | null;
 };
-type PlateOpts = { w?: number; sizes?: string; eager?: boolean; controls?: boolean; fullLabel?: string };
+type PlateOpts = { w?: number; sizes?: string; eager?: boolean; controls?: boolean; fullLabel?: string; dims?: boolean };
 
 export const esc = (s: unknown) =>
   String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
@@ -87,7 +87,8 @@ export const plateHTML = (item: Media, opts: PlateOpts = {}) => {
     inner = `<video src="${esc(vid)}"${poster ? ` poster="${esc(ik(poster, w))}"` : ""} muted loop playsinline preload="metadata"${opts.controls ? " controls autoplay" : ""} aria-label="${alt}"></video>`;
   } else if (poster) {
     const srcset = isIK(poster) ? IK.widths.map((n) => `${ik(poster, n)} ${n}w`).join(", ") : "";
-    inner = `<img src="${esc(ik(poster, w))}"${srcset ? ` srcset="${esc(srcset)}" sizes="${esc(opts.sizes || "100vw")}"` : ""} alt="${alt}" loading="${opts.eager ? "eager" : "lazy"}" decoding="async">`;
+    const dims = opts.dims && r ? ` width="${w}" height="${Math.round((w * r.h) / r.w)}"` : "";
+    inner = `<img src="${esc(ik(poster, w))}"${dims}${srcset ? ` srcset="${esc(srcset)}" sizes="${esc(opts.sizes || "100vw")}"` : ""} alt="${alt}" loading="${opts.eager ? "eager" : "lazy"}" decoding="async">`;
   } else {
     inner = (MOCKUPS[item.mockup || ""] || MOCKUPS.type)();
   }

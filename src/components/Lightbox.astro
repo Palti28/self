@@ -14,7 +14,7 @@ const t = useT(Astro.props.lang);
   <div class="lb__foot">
     <span class="lb__cap" id="lb-cap"></span>
     <div>
-      <a class="lb__btn lb__link" id="lb-ext" href="#" target="_blank" rel="noopener" hidden>{t("lb.open")} &#8599;</a>
+      <a class="lb__btn lb__link" id="lb-ext" href="#" target="_blank" rel="noopener" hidden>{t("lb.open")}<span class="vh"> {t("a11y.newTab")}</span></a>
       <a class="lb__btn lb__link" id="lb-link" href="#" hidden>{t("lb.case")} &rarr;</a>
       <button type="button" class="lb__btn" id="lb-prev">&larr; {t("lb.prev")}</button>
       <button type="button" class="lb__btn" id="lb-next">{t("lb.next")} &rarr;</button>

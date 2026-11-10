@@ -22,7 +22,7 @@ const wall = shotsOf(shots, lang);
       count={pad(wall.length)}
       intro={t("archives.intro")}
     />
-    <section class="wrap page-body" data-filter-scope>
+    <section class="wrap page-body" data-filter-scope aria-labelledby="page-title">
       <div class="toolbar">
         <Filters chips={chips(wall.map((s) => s.tag), t("filter.all"), (tag) => tagLabel(tag, lang))} label={t("archive.filter")} />
       </div>

@@ -4,7 +4,7 @@
 import { $$, reduceMotion } from "./dom";
 
 export const REVEAL = [
-  ".sec-head", ".index__head", ".index > li", ".cards > .card", ".wall > .shot", ".more",
+  ".sec-head", ".index__head", ".index > li", ".ledger > li", ".cards > .card", ".wall > .shot", ".more",
   ".about__left", ".bio", ".block-title", ".caps li", ".highs li",
   ".contact > *", ".page-head > *", ".toolbar", ".prose > *", ".foot",
 ].join(",");

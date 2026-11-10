@@ -1,0 +1,73 @@
+---
+/* Home "Selected work" ledger: numbered entries on hairline rules.
+   The first project is the lead entry (image + facts); the rest are short rows. */
+import Plate from "./Plate.astro";
+import { L, url, useT, type Lang } from "../lib/i18n";
+import { pad } from "../lib/media";
+
+interface Props { projects: any[]; lang: Lang }
+const { projects, lang } = Astro.props;
+const t = useT(lang);
+const tr = (v: any) => L(v, lang);
+
+// "years": the Timeline fact when a project has one (e.g. 2019 to 2023), otherwise its year.
+const years = (p: any) => {
+  const tl = (p.facts || []).find(([k]: any) => tr(k) === "Timeline");
+  return tl ? tr(tl[1]) : p.year;
+};
+const items = projects.map((p, i) => ({
+  ...p,
+  n: pad(i + 1),
+  href: url(lang, `/work/${p.slug}`),
+  title: tr(p.title),
+  subtitle: tr(p.subtitle),
+  category: tr(p.category),
+  role: tr(p.role),
+  years: years(p),
+}));
+const [lead, ...rest] = items;
+---
+
+<ol class="ledger">
+  {lead && (
+    <li class="ledger__item ledger__item--lead">
+      <span class="ledger__n tab" aria-hidden="true">{lead.n}</span>
+      <div class="ledger__body">
+        <p class="ledger__kicker">{lead.category} &middot; <span class="tab">{lead.years}</span></p>
+        <h3 class="ledger__title"><a href={lead.href}>{lead.title}</a></h3>
+        <p class="ledger__desc">{lead.subtitle}</p>
+        <dl class="ledger__facts" aria-label={t("work.facts")}>
+          {(lead.lead || lead.facts || []).map(([k, v]: any) => (
+            <div>
+              <dt>{tr(k)}</dt>
+              <dd>
+                {v && typeof v === "object" && v.href
+                  ? <a href={v.href} target="_blank" rel="noopener">{tr(v.text)}<span class="vh"> {t("a11y.newTab")}</span></a>
+                  : tr(v)}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <a class="ledger__link" href={lead.href}>{t("row.read")}<span class="vh"> {lead.title}</span></a>
+      </div>
+      <a class="ledger__media" href={lead.href} tabindex="-1" aria-hidden="true">
+        <Plate item={{ ...lead, title: lead.title }} lang={lang} w={1000} sizes="(max-width: 760px) 100vw, 520px" dims />
+      </a>
+    </li>
+  )}
+  {rest.map((p) => (
+    <li class="ledger__item">
+      <span class="ledger__n tab" aria-hidden="true">{p.n}</span>
+      <div class="ledger__main">
+        <h3 class="ledger__title"><a href={p.href}>{p.title}</a></h3>
+        <p class="ledger__desc">{p.subtitle}</p>
+      </div>
+      <dl class="ledger__meta">
+        <div><dt class="vh">{t("col.category")}</dt><dd>{p.category}</dd></div>
+        <div><dt class="vh">Role</dt><dd>{p.role}</dd></div>
+        <div><dt class="vh">{t("col.year")}</dt><dd class="tab">{p.years}</dd></div>
+      </dl>
+      <a class="ledger__link" href={p.href}>{t("row.read")}<span class="vh"> {p.title}</span></a>
+    </li>
+  ))}
+</ol>

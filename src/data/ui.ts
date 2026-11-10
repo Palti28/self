@@ -28,6 +28,7 @@ export const UI: Record<"en" | "id", Record<string, string>> = {
     "detail.screens": "Screens from this project", "detail.next": "Next project",
     "img.error": "Image did not load", "img.full": "Full page",
     "page.home": "Home",
+    "a11y.newTab": "(opens in a new tab)", "work.facts": "Project facts",
     "works.label": "Index", "works.title": "All work", "works.filter": "Filter by year",
     "works.intro": "Every project, case study and concept, newest first.",
     "archives.label": "Archive", "archives.title": "Full archive",
