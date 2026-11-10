@@ -71,6 +71,12 @@ const ogImage = (() => {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" />
     <script is:inline>
       try { const t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+      // Entrance animations: hide reveal targets until reveal.ts runs; show everything if it never does.
+      (function (d) {
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        d.classList.add("motion");
+        setTimeout(function () { if (!d.dataset.rv) d.classList.remove("motion"); }, 2500);
+      })(document.documentElement);
     </script>
   </head>
   <body>
