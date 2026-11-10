@@ -21,6 +21,7 @@ img { max-width: 100%; }
 
   --ease: cubic-bezier(.2, .7, .2, 1);
   --t: 180ms;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
   --gutter: clamp(16px, 3.4vw, 48px);
   --col-gap: clamp(12px, 2vw, 24px);
 }
@@ -737,4 +738,40 @@ body { transition: background-color 220ms var(--ease), color 220ms var(--ease); 
   .nav__right { gap: 10px; }
   .status { padding: 8px; }
   .status__short { display: none; }
+}
+
+/* ---------- Motion: hero intro, scroll reveal, page transitions ----------
+   html.motion is set in <head> only when the visitor allows motion; reveal.ts adds .is-in.
+   Keep the reveal selector list in sync with REVEAL in src/scripts/reveal.ts. */
+@keyframes rvIn { from { opacity: 0; transform: translate3d(0, 18px, 0); } }
+@keyframes heroLine { from { opacity: 0; transform: translate3d(0, .28em, 0); filter: blur(8px); } }
+
+html.motion .hero__eyebrow { animation: rvIn 700ms var(--ease-out) 40ms backwards; }
+html.motion .display span { animation: heroLine 1000ms var(--ease-out) backwards; }
+html.motion .display span:nth-child(1) { animation-delay: 120ms; }
+html.motion .display span:nth-child(2) { animation-delay: 220ms; }
+html.motion .display span:nth-child(3) { animation-delay: 320ms; }
+html.motion .badge { animation: rvIn 800ms var(--ease-out) 560ms backwards; }
+html.motion .spec { animation: rvIn 700ms var(--ease-out) 520ms backwards; }
+html.motion .hero__foot > * { animation: rvIn 800ms var(--ease-out) 620ms backwards; }
+html.motion .hero__foot > :nth-child(2) { animation-delay: 700ms; }
+html.motion .hero__foot > :nth-child(3) { animation-delay: 780ms; }
+@media (min-width: 1100px) {
+  html.motion .badge { animation: rvIn 800ms var(--ease-out) 560ms backwards, drift 7s ease-in-out 1.4s infinite; }
+}
+
+html.motion :is(.sec-head, .index__head, .index > li, .cards > .card, .wall > .shot, .more,
+  .about__left, .bio, .block-title, .caps li, .highs li,
+  .contact > *, .page-head > *, .toolbar, .prose > *, .foot):not(.is-in) { opacity: 0; }
+html.motion .is-in { animation: rvIn 760ms var(--ease-out) var(--rv-d, 0ms) backwards; }
+
+/* Cross-document page transitions (Chrome, Edge, Safari 18+); other browsers just navigate. */
+@view-transition { navigation: auto; }
+.nav { view-transition-name: site-nav; }
+::view-transition-old(root) { animation: vtOut 160ms var(--ease) both; }
+::view-transition-new(root) { animation: vtIn 420ms var(--ease-out) both; }
+@keyframes vtOut { to { opacity: 0; } }
+@keyframes vtIn { from { opacity: 0; transform: translate3d(0, 12px, 0); } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
 }
