@@ -67,60 +67,64 @@ export const SITE = {
     {
       slug: "currency",
       title: "Currency",
-      subtitle: { en: "One design language for a payments company with many product teams.", id: "Satu bahasa desain untuk perusahaan pembayaran dengan banyak tim produk." },
+      subtitle: { en: "One shared Figma library behind DOKU's payment products." },
       category: "Design system",
-      role: "Lead product designer, DOKU",
+      role: "Product designer, DOKU",
       year: "2023",
       date: "Mar 2023",
-      tags: ["Tokens", "Components", "Figma"],
-      ratio: "16/9", mockup: "system", image: null,
+      tags: ["Figma", "Components", "Foundations"],
+      ratio: "16/9", mockup: "system", image: "/work/currency/cover.webp",
+      alt: "Currency, the DOKU design system: color ramps, buttons, form fields, toggles and status badges from the Figma library",
       link: [
         { label: "doku.com", href: "https://www.doku.com" },
         { label: "DOKU Wallet · Google Play", href: "https://play.google.com/store/search?q=doku%20wallet&c=apps&hl=id" }
       ],
       facts: [
-        [{ en: "Role", id: "Peran" }, "Lead product designer"],
+        [{ en: "Role", id: "Peran" }, "Product designer"],
         [{ en: "Timeline", id: "Periode" }, { en: "2019 to 2023", id: "2019 hingga 2023" }],
-        [{ en: "Scope", id: "Cakupan" }, { en: "Tokens, components, docs", id: "Token, komponen, dokumentasi" }],
-        [{ en: "Tools", id: "Perangkat" }, "Figma, Storybook, SCSS"]
+        [{ en: "Scope", id: "Cakupan" }, "Foundations + 25 component families"],
+        [{ en: "Tool", id: "Perangkat" }, "Figma, variants and styles"]
       ],
+      /* Case study copy and images come from the DOKU Design System sheet (Figma library v1.0.0). */
       body: [
-        { type: "p", text: {
-          en: "When I joined DOKU, each product team kept its own version of the same button. Checkout, the merchant dashboard, and the mobile wallet looked related, but only from a distance. Every new feature restarted the same conversations about spacing, color, and states.",
-          id: "Saat saya bergabung dengan DOKU, setiap tim produk menyimpan versi sendiri dari tombol yang sama. Checkout, dashboard merchant, dan dompet mobile terlihat mirip, tetapi hanya dari kejauhan. Setiap fitur baru memulai ulang diskusi yang sama soal spacing, warna, dan state." } },
-        { type: "p", text: {
-          en: "Currency started as a single Figma file and grew into the system every team ships with. This is a short look at how it was built and what held it together.",
-          id: "Currency berawal dari satu file Figma dan tumbuh menjadi sistem yang dipakai setiap tim untuk merilis produk. Berikut gambaran singkat bagaimana sistem ini dibangun dan apa yang membuatnya tetap utuh." } },
-        { type: "h", text: { en: "Start with tokens, not components", id: "Mulai dari token, bukan komponen" } },
-        { type: "p", text: {
-          en: "An audit of live screens turned up dozens of near-identical grays and blues. Instead of drawing new components on top of that noise, the first release was only tokens: color, type, spacing, radius, and elevation, named by role rather than by value.",
-          id: "Audit terhadap layar yang sudah live menemukan puluhan abu-abu dan biru yang nyaris identik. Alih-alih menggambar komponen baru di atas kekacauan itu, rilis pertama hanya berisi token: warna, tipografi, spacing, radius, dan elevasi, yang dinamai berdasarkan peran, bukan nilainya." } },
-        { type: "img", width: "wide", ratio: "16/10", mockup: "ramp", src: null, caption: {
-          en: "Neutral ramp with role names. Each step maps to one SCSS variable and one Figma style.",
-          id: "Ramp netral dengan nama peran. Setiap tingkat dipetakan ke satu variabel SCSS dan satu style Figma." } },
-        { type: "p", text: {
-          en: "Because the names described intent, engineers could adopt tokens inside old code without redesigning anything. Adoption came first. Visual consistency followed.",
-          id: "Karena namanya menjelaskan maksud, engineer bisa mengadopsi token di dalam kode lama tanpa mendesain ulang apa pun. Adopsi datang lebih dulu. Konsistensi visual menyusul." } },
-        { type: "quote", text: {
-          en: "A token named for its job survives a rebrand. A token named for its hex value does not.",
-          id: "Token yang dinamai sesuai fungsinya akan bertahan saat rebrand. Token yang dinamai sesuai nilai hex-nya tidak." } },
-        { type: "h", text: { en: "Components with a contract", id: "Komponen dengan kontrak" } },
-        { type: "p", text: {
-          en: "Each component shipped with three things: the Figma master, a coded reference in Storybook, and a page listing its states, props, and the cases it does not cover. That last part saved the most time in review.",
-          id: "Setiap komponen dirilis dengan tiga hal: master di Figma, referensi kode di Storybook, dan halaman yang mencantumkan state, props, serta kasus yang tidak ditanganinya. Bagian terakhir itulah yang paling menghemat waktu saat review." } },
-        { type: "pair", items: [{ ratio: "4/5", mockup: "form", src: null }, { ratio: "4/5", mockup: "system", src: null }], caption: {
-          en: "Form field anatomy and button states, documented next to the code.",
-          id: "Anatomi form field dan state tombol, didokumentasikan berdampingan dengan kodenya." } },
-        { type: "h", text: { en: "What changed", id: "Apa yang berubah" } },
+        { type: "p", text: { en: "One shared Figma library behind DOKU's payment products. It covers brand color, type and elevation, then the 25 component families that dashboards, checkout and merchant tools are built from." } },
+        { type: "h", text: { en: "What the library holds" } },
+        { type: "p", text: { en: "Foundations come first and every component draws from them. Each component page carries its own guideline frame, so a designer can pick a variant and read when to use it in the same place." } },
         { type: "list", items: [
-          { en: "New product squads started from the system on day one.", id: "Squad produk baru langsung memakai sistem sejak hari pertama." },
-          { en: "Design review moved from pixel checks to flow and content.", id: "Design review bergeser dari cek piksel ke alur dan konten." },
-          { en: "Dark mode became a token change instead of a project.", id: "Dark mode menjadi perubahan token, bukan sebuah proyek." }
+          "36 pages in Figma",
+          "25 component families",
+          "400+ variants across sets",
+          "18 text styles",
+          "7 elevation levels"
         ] },
-        { type: "sep" },
-        { type: "p", text: {
-          en: "<em>Placeholder copy.</em> Replace this case study with your own numbers, screenshots, and lessons.",
-          id: "<em>Teks placeholder.</em> Ganti studi kasus ini dengan angka, screenshot, dan pelajaran Anda sendiri." } }
+        { type: "img", width: "wide", ratio: "2000/1005", src: "/work/currency/overview.webp", alt: "Overview of the DOKU Figma library: foundations, extras and the component index with variants per set", caption: "Foundations: logo, color, type, icons and shadow. Extras: captcha, email template and a sample page." },
+        { type: "h", text: { en: "Color" } },
+        { type: "p", text: { en: "Red is the primary brand color and carries every primary action. Tosca and orange support it, and black runs as a ten step neutral for text, borders and surfaces. Each ramp has nine tints and shades with 50 as the base." } },
+        { type: "img", width: "wide", ratio: "2000/1403", src: "/work/currency/color.webp", alt: "Red, tosca, orange and black color ramps with hex values, and the color roles table", caption: "Shades and tints, and the role each color plays in the product." },
+        { type: "h", text: { en: "Type" } },
+        { type: "p", text: { en: "A single family, DIN Next LT Pro, in three weights. Its narrow, engineered letterforms keep amounts and account numbers compact in dense dashboards. Line heights sit on a 4 px grid." } },
+        { type: "img", width: "wide", ratio: "2000/1355", src: "/work/currency/type.webp", alt: "Type scale from Title/H1 48/72 down to Caption/S 10/12, with regular, medium and bold weights", caption: "Shown in Barlow, the closest web-available match to DIN Next LT Pro." },
+        { type: "h", text: { en: "Elevation" } },
+        { type: "p", text: { en: "Seven shadow styles, from a hairline lift for inputs to the deep shadow behind modals. Higher layers sit closer to the user and cast softer, wider shadows." } },
+        { type: "img", width: "wide", ratio: "2000/624", src: "/work/currency/elevation.webp", alt: "Seven shadow styles from Shadow/xs to Shadow/3xl", caption: "Cards use sm, popovers lg, modals 3xl." },
+        { type: "h", text: { en: "Buttons" } },
+        { type: "p", text: { en: "The largest set in the library, with 216 variants. Four variants share one anatomy, so a single component covers every action on a page, from Pay now to an icon-only delete. Loading keeps the button's width so layouts never jump." } },
+        { type: "img", width: "wide", ratio: "2000/821", src: "/work/currency/buttons.webp", alt: "Primary, secondary, normal and text buttons in default, hover, pressed, disabled and loading states, with sizes and types", caption: "Variant by state, three sizes and four types." },
+        { type: "h", text: { en: "Form and input" } },
+        { type: "p", text: { en: "Every field shares one frame: label, control, helper. States change only the border and the helper line, so validation reads the same across checkout, onboarding and settings." } },
+        { type: "img", width: "wide", ratio: "2000/1052", src: "/work/currency/form.webp", alt: "Input fields in default, focus, filled, error, success, read only and disabled states, and input types", caption: "Seven states and seven field types, 101 variants in all." },
+        { type: "h", text: { en: "Selection" } },
+        { type: "p", text: { en: "Checkbox for many, radio for one, toggle for settings that apply right away. All three share the red active fill and the same disabled grey." } },
+        { type: "img", width: "wide", ratio: "2000/912", src: "/work/currency/selection.webp", alt: "Checkbox, radio and toggle states, and examples of each in use", caption: "Checkbox 32, radio 8 and toggle 3 variants." },
+        { type: "h", text: { en: "Feedback" } },
+        { type: "p", text: { en: "Status always uses the same four tones: success, warning, error and neutral. A badge labels a record, a toast reports what just happened, and a modal stops the flow only when a choice cannot be undone." } },
+        { type: "img", width: "wide", ratio: "2000/1180", src: "/work/currency/feedback.webp", alt: "Status badges, inline and flag toasts, and a confirmation modal", caption: "Badge 4, toast 12 and modal 12 variants." },
+        { type: "h", text: { en: "Tabs, table and cards" } },
+        { type: "p", text: { en: "The merchant dashboard runs on these three. The table is assembled from ten cell types, so a new report is a matter of picking columns, not drawing rows." } },
+        { type: "img", width: "wide", ratio: "2000/1482", src: "/work/currency/data.webp", alt: "Default and pill tabs, a transactions table built from cell types, and dashboard cards", caption: "Tabs 5, table cells 10 and cards 5 variants." },
+        { type: "quote", text: { en: "A change to RED50 or Body M lands everywhere at once." } },
+        { type: "h", text: { en: "One library, every surface" } },
+        { type: "p", text: { en: "Foundations feed the components, and the components feed checkout, the merchant dashboard and internal tools." } }
       ]
     },
     {

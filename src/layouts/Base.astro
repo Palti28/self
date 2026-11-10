@@ -35,6 +35,7 @@ const canonical = new URL(slash(lang === "id" ? `/id${path}` : path), Astro.site
 // ImageKit images get a 1200x630 crop; any other URL is used as is.
 const ogImage = (() => {
   const u = image || SITE.ogImage;
+  if (u.startsWith("/")) return new URL(u, Astro.site).href; // local file in public/
   if (!u.includes("ik.imagekit.io") || /[?&]tr=/.test(u)) return u;
   return `${u}?tr=w-1200,h-630,fo-auto,f-jpg`;
 })();
