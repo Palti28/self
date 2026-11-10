@@ -19,9 +19,9 @@ export const SITE = {
      The full lists live at /work and /archive. */
   featured: { work: 4, archive: 12 },
 
-  /* Home "Selected work" ledger: the first slug is the lead entry (image + facts),
-     the rest are shorter rows. Order is as listed here. */
-  selected: ["myasn", "currency", "roha", "ledger"],
+  /* Home "Selected work" ledger, in the order listed. Projects with a cover image get the
+     large entry (image + facts); the others are shorter rows. */
+  selected: ["myasn", "currency", "loka", "roha"],
 
   /* ImageKit: any URL on these hosts gets resized automatically (?tr=w-800 etc.)
      and a srcset. Add your custom CNAME here if you use one. */
@@ -229,47 +229,50 @@ export const SITE = {
       ]
     },
     {
-      slug: "ledger",
-      title: "Ledger Review Console",
-      subtitle: { en: "A concept for reviewing platform activity without losing the audit trail.", id: "Konsep untuk meninjau aktivitas platform tanpa kehilangan jejak audit." },
-      category: { en: "Regulatory tech, concept", id: "Teknologi regulasi, konsep" },
-      role: { en: "Design and frontend", id: "Desain dan frontend" },
+      slug: "loka",
+      title: "Loka",
+      subtitle: { en: "A food delivery app that takes an order from search to doorstep." },
+      category: "Mobile app",
+      role: "Product designer",
       year: "2026",
-      date: "Sep 2026",
-      tags: ["Dashboard", "Audit trail", "Astro"],
-      ratio: "4/3", mockup: "console", image: null,
+      tags: ["Mobile", "Delivery", "Figma"],
+      ratio: "16/9", mockup: "mobile", image: "/work/loka/cover.webp",
+      alt: "Loka food delivery app: the home, tracking and cart screens on an orange background",
       link: null,
       facts: [
-        [{ en: "Role", id: "Peran" }, { en: "Design and frontend", id: "Desain dan frontend" }],
-        ["Status", { en: "Personal concept", id: "Konsep pribadi" }],
-        [{ en: "Year", id: "Tahun" }, "2026"],
-        ["Stack", "Astro, CSS"]
+        [{ en: "Role", id: "Peran" }, "Product designer"],
+        [{ en: "Type", id: "Jenis" }, "Food delivery app"],
+        [{ en: "Scope", id: "Cakupan" }, "From search to delivery tracking"],
+        [{ en: "Tool", id: "Perangkat" }, "Figma"]
       ],
       body: [
-        { type: "p", text: {
-          en: "This is a personal concept, not a production tool. It explores how a reviewer could move through a queue of platform reports while every decision stays traceable.",
-          id: "Ini adalah konsep pribadi, bukan alat produksi. Konsep ini mengeksplorasi bagaimana seorang reviewer dapat menelusuri antrean laporan platform sementara setiap keputusan tetap bisa dilacak." } },
-        { type: "h", text: { en: "Every screen is a record", id: "Setiap layar adalah catatan" } },
-        { type: "p", text: {
-          en: "In supervisory work, the reason behind a decision matters as much as the decision. The console keeps the evidence, the note, and the outcome on the same surface, so nothing lives only in someone's memory.",
-          id: "Dalam pekerjaan pengawasan, alasan di balik sebuah keputusan sama pentingnya dengan keputusannya. Konsol ini menjaga bukti, catatan, dan hasil tetap di satu permukaan, sehingga tidak ada yang hanya tersimpan di ingatan seseorang." } },
-        { type: "img", width: "wide", ratio: "16/10", mockup: "console", src: null, caption: {
-          en: "Review queue with status flags and the evidence panel collapsed.",
-          id: "Antrean review dengan penanda status dan panel bukti dalam keadaan tertutup." } },
-        { type: "quote", text: {
-          en: "If a reviewer cannot explain why a case was closed, the interface failed, not the reviewer.",
-          id: "Jika reviewer tidak bisa menjelaskan mengapa sebuah kasus ditutup, yang gagal adalah antarmukanya, bukan reviewernya." } },
-        { type: "h", text: { en: "Built in the browser", id: "Dibangun langsung di browser" } },
-        { type: "p", text: {
-          en: "The prototype runs on Astro with plain CSS and a small token file. Working in code early made density, keyboard flow, and table performance real questions instead of guesses.",
-          id: "Prototipe ini berjalan di Astro dengan CSS biasa dan satu file token kecil. Bekerja di kode sejak awal membuat kepadatan, alur keyboard, dan performa tabel menjadi pertanyaan nyata, bukan tebakan." } },
-        { type: "img", width: "wide", ratio: "3/2", mockup: "chart", src: null, caption: {
-          en: "Trend widget for reported volume across a reporting period.",
-          id: "Widget tren untuk volume yang dilaporkan sepanjang satu periode pelaporan." } },
-        { type: "sep" },
-        { type: "p", text: {
-          en: "<em>Placeholder copy.</em> Replace with your own notes on the concept.",
-          id: "<em>Teks placeholder.</em> Ganti dengan catatan Anda sendiri tentang konsep ini." } }
+        { type: "p", text: { en: "Loka is a mobile food delivery app. This case study follows one complete order: allowing permissions, finding a place to eat, customizing a dish, checking the cart and following the driver until the food arrives." } },
+        { type: "h", text: { en: "Permissions" } },
+        { type: "p", text: { en: "The first two screens ask for location and notification access one at a time. Each says in a sentence what the permission is for. Location is only read while the app is in use, and notifications keep the order progress up to date. Notifications can be skipped with Nanti saja." } },
+        { type: "img", width: "wide", ratio: "940/972", src: "/work/loka/permission.webp", alt: "Location and notification permission screens, each with an illustration, one sentence of explanation and a single button", caption: "Location and notification permissions, one per screen." },
+        { type: "h", text: { en: "Home" } },
+        { type: "p", text: { en: "Home starts with the delivery address and a search field, then moves through deals, a points balance, categories, a weekly special and new restaurants. Once something is added, a cart bar floats above the tab bar with the total and the number of orders. While an order is on its way, three status cards at the top show where the driver is." } },
+        { type: "img", width: "wide", ratio: "940/1848", src: "/work/loka/home.webp", alt: "Loka home screen with deals, points, categories and restaurants, next to the home screen with order status cards and the one with the floating cart bar", caption: "The full home page, with order status cards and the floating cart bar." },
+        { type: "h", text: { en: "Search" } },
+        { type: "p", text: { en: "Before typing, search offers popular searches and categories. Results show each restaurant with its rating, distance and delivery time, followed by the matching dishes and their prices. A closed restaurant is marked Tutup. Filter and sort sit above the list." } },
+        { type: "img", width: "wide", ratio: "1362/972", src: "/work/loka/search.webp", alt: "Search screen with popular searches and categories, the keyboard open while typing, and the results list with filter and sort", caption: "Search before typing, while typing, and the results." },
+        { type: "h", text: { en: "Restaurant page and dish options" } },
+        { type: "p", text: { en: "The restaurant page keeps the decision short: distance and price range, the promo that applies, then the menu. Each item has a photo, a short description, the price and a Promo tag where one applies. Sold out items stay on the list, faded, with Habis in red." } },
+        { type: "p", text: { en: "Options on a dish are grouped by how they must be answered. Required groups, such as chicken part and rice, say Wajib pilih 1. Optional extras can be combined, and there is a note field. Options that are sold out stay visible and say Habis. The bottom bar holds the quantity stepper and the Tambah button with the price." } },
+        { type: "img", width: "wide", ratio: "1784/1372", src: "/work/loka/restaurant.webp", alt: "Restaurant page with a promo card and menu list, then the dish screen with required options, optional extras and a note field", caption: "The restaurant page, then the dish screen from the top to the note field." },
+        { type: "h", text: { en: "Cart" } },
+        { type: "p", text: { en: "The cart repeats the delivery address and estimated time, with a note field for the driver. Orders are grouped by restaurant. Each item has Ubah, a quantity stepper and delete, plus the options and note that were chosen. A small fee is added when an order comes from more than one restaurant. A banner shows the points the order earns, and the payment summary breaks the price into discount, extra fee and delivery fee before the total. Notes open in a bottom sheet with a 200 character limit." } },
+        { type: "img", width: "wide", ratio: "940/1630", src: "/work/loka/cart.webp", alt: "Cart with the delivery address, items grouped by restaurant, payment summary and the continue button, and the two note sheets", caption: "The cart and its two note sheets, one for the order and one for the driver." },
+        { type: "h", text: { en: "Orders" } },
+        { type: "p", text: { en: "The order list has two tabs, History and Dalam proses. A history row shows the restaurants, the date, the total, a green Selesai status and Pesan lagi to order again. An order in progress shows the restaurants, the total and the number of items." } },
+        { type: "img", width: "wide", ratio: "940/973", src: "/work/loka/order.webp", alt: "Order list with the History tab selected and the Dalam proses tab selected", caption: "History and in-progress orders." },
+        { type: "h", text: { en: "Delivery progress" } },
+        { type: "p", text: { en: "Tracking runs in four steps: searching for a driver, driver found and heading to the restaurant, order being prepared, and driver on the way. The map shows the restaurant, the driver and the route in green, and a bottom sheet carries the current step on a four part progress bar. Cancelling is possible while the app is still searching for a driver." } },
+        { type: "img", width: "wide", ratio: "1784/972", src: "/work/loka/tracking.webp", alt: "Four map screens showing the steps from searching for a driver to the driver on the way", caption: "The four tracking steps on the map." },
+        { type: "p", text: { en: "Pulling the sheet up shows the driver with call and chat buttons, the pickup and drop-off points, the items and the payment method. When the order arrives, a rating screen asks for one to five stars and an optional comment for the driver." } },
+        { type: "img", width: "wide", ratio: "1362/1451", src: "/work/loka/delivery.webp", alt: "Expanded tracking sheet with driver details, the full order status list, and the rating screen", caption: "Driver details, the full status list and the rating screen." },
+        { type: "h", text: { en: "Color and status" } },
+        { type: "p", text: { en: "One orange does the action work: primary buttons, the active tab and links. Green is kept for progress and finished states, and red for promos and sold out items. That keeps the colors that mean something from competing with the one that asks for a tap." } }
       ]
     },
     {
@@ -374,13 +377,13 @@ export const SITE = {
     { title: { en: "Button and input specs", id: "Spesifikasi tombol dan input" }, tag: "System", project: "currency", ratio: "1/1", mockup: "system", src: null },
     { title: { en: "KYC onboarding form", id: "Formulir onboarding KYC" }, tag: "Product", ratio: "3/4", mockup: "form", src: null },
     { title: { en: "Roha wordmark", id: "Wordmark Roha" }, tag: "Brand", project: "roha", ratio: "3/2", mockup: "type", src: null },
-    { title: { en: "Review queue, concept", id: "Antrean review, konsep" }, tag: "Product", project: "ledger", ratio: "16/10", mockup: "console", src: null },
+    { title: { en: "Loka home", id: "Beranda Loka" }, tag: "Mobile", project: "loka", ratio: "10/21", src: "/work/loka/screen-home.webp" },
     /* TODO: re-enable with real MyASN images
     { title: { en: "Leave request flow", id: "Alur pengajuan cuti" }, tag: "Mobile", project: "myasn", ratio: "9/16", mockup: "mobile", src: null },
     */
     { title: { en: "Payment link checkout", id: "Checkout payment link" }, tag: "Product", ratio: "2/3", mockup: "form", src: null },
     { title: { en: "Neutral palette, dark", id: "Palet netral, gelap" }, tag: "System", project: "currency", ratio: "1/1", mockup: "ramp", src: null },
-    { title: { en: "Volume trend widget", id: "Widget tren volume" }, tag: "Product", project: "ledger", ratio: "21/9", mockup: "chart", src: null },
+    { title: { en: "Loka delivery tracking", id: "Pelacakan pesanan Loka" }, tag: "Mobile", project: "loka", ratio: "10/21", src: "/work/loka/screen-tracking.webp" },
     { title: { en: "Studio site hero", id: "Hero situs studio" }, tag: "Brand", project: "roha", ratio: "5/4", mockup: "type", src: null },
     /* TODO: re-enable with real MyASN images
     { title: { en: "Document viewer", id: "Penampil dokumen" }, tag: "Mobile", project: "myasn", ratio: "1170/2532", mockup: "mobile", src: null },
