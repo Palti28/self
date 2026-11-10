@@ -2,7 +2,7 @@
 import { plateHTML, type Media } from "../lib/media";
 import { useT, type Lang } from "../lib/i18n";
 
-interface Props { item: Media; lang: Lang; w?: number; sizes?: string; eager?: boolean }
+interface Props { item: Media; lang: Lang; w?: number; sizes?: string; eager?: boolean; dims?: boolean }
 const { item, lang, ...opts } = Astro.props;
 ---
 

@@ -27,9 +27,7 @@ const onError = (el: MediaEl) => {
   const pl = el.closest(".plate");
   if (!pl || pl.classList.contains("is-error")) return;
   pl.classList.add("is-error");
-  let host = "";
-  try { host = new URL(el.currentSrc || el.src).host; } catch {}
-  pl.insertAdjacentHTML("beforeend", `<span class="plate__err">${esc(t("img.error"))}${host ? `<br>${esc(host)}` : ""}</span>`);
+  pl.insertAdjacentHTML("beforeend", `<span class="plate__err">${esc(t("img.error"))}</span>`);
 };
 const isMedia = (n: EventTarget | null): n is MediaEl => n instanceof HTMLImageElement || n instanceof HTMLVideoElement;
 document.addEventListener("load", (e) => { if (e.target instanceof HTMLImageElement) onLoad(e.target); }, true);
@@ -88,8 +86,10 @@ const render = () => {
   if (ext) lbExt.href = ext;
 };
 const step = (d: number) => { cur = list[(list.indexOf(cur) + d + list.length) % list.length]; render(); };
+// While the viewer is open, the page behind it is inert so Tab stays inside the dialog.
+const setInert = (on: boolean) => $$("body > :not(#lb)").forEach((el) => el.toggleAttribute("inert", on));
 const close = () => {
-  lb.hidden = true; root.style.overflow = ""; stage.innerHTML = "";
+  lb.hidden = true; root.style.overflow = ""; stage.innerHTML = ""; setInert(false);
   lastFocus?.focus({ preventScroll: true });
 };
 
@@ -98,12 +98,12 @@ document.addEventListener("click", (e) => {
   list = $$("button.shot", tile.closest(".wall")!).filter((el) => !el.hidden).map((el) => +el.dataset.i!);
   cur = +tile.dataset.i!; lastFocus = tile;
   render();
-  lb.hidden = false; root.style.overflow = "hidden"; $("#lb-close")!.focus();
+  lb.hidden = false; root.style.overflow = "hidden"; setInert(true); $("#lb-close")!.focus();
 });
 $("#lb-close")!.addEventListener("click", close);
 $("#lb-prev")!.addEventListener("click", () => step(-1));
 $("#lb-next")!.addEventListener("click", () => step(1));
-lbLink.addEventListener("click", () => { lb.hidden = true; root.style.overflow = ""; });
+lbLink.addEventListener("click", () => { lb.hidden = true; root.style.overflow = ""; setInert(false); });
 stage.addEventListener("click", (e) => { if (e.target === stage) close(); });
 addEventListener("keydown", (e) => {
   if (lb.hidden) return;

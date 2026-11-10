@@ -26,7 +26,7 @@ const items = projects.map((p) => ({
           <span class="row__name">{p.title}</span>
           <span class="row__cat">{p.category}</span>
           <span class="row__year">{p.year}</span>
-          <span class="row__go">{t("row.read")} <i>&#8599;</i></span>
+          <span class="row__go">{t("row.read")}</span>
           <span class="row__meta">{p.category} &middot; {p.year}</span>
         </a>
       </li>
@@ -40,7 +40,7 @@ const items = projects.map((p) => ({
       <a class="card" href={p.href} data-key={p.year}>
         <Plate item={p} lang={lang} sizes="(max-width: 760px) 100vw, 58vw" />
         <div class="card__meta">
-          <div class="card__top"><span class="card__title">{p.title}<i>&#8599;</i></span><span class="card__year tab">{p.year}</span></div>
+          <div class="card__top"><span class="card__title">{p.title}</span><span class="card__year tab">{p.year}</span></div>
           <span class="card__role">{p.role}</span>
           <div class="tags">{(p.tags || []).map((tag: any) => <span>{L(tag, lang)}</span>)}</div>
         </div>

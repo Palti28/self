@@ -14,14 +14,14 @@ const t = useT(lang);
         <li>
           {(s as any).action === "cv"
             ? <button type="button" class="socials__btn" data-cv-open aria-haspopup="dialog">{L(s.label, lang)}</button>
-            : <a href={(s as any).href} target="_blank" rel="noopener">{L(s.label, lang)}<sup>&#8599;</sup></a>}
+            : <a href={(s as any).href} target="_blank" rel="noopener">{L(s.label, lang)}<span class="vh"> {t("a11y.newTab")}</span></a>}
         </li>
       ))}
     </ul>
     <div class="legal">
       <span>&copy; {new Date().getFullYear()} {SITE.name}. {t("foot.rights")}</span>
       <span>{SITE.location} &middot; <span class="tab" data-clock={SITE.timezone}>00:00</span> {SITE.tzLabel}</span>
-      <a href={`https://${SITE.domain}`} target="_blank" rel="noopener">{SITE.domain} &#8599;</a>
+      <a href={`https://${SITE.domain}`} target="_blank" rel="noopener">{SITE.domain}<span class="vh"> {t("a11y.newTab")}</span></a>
     </div>
   </div>
 </footer>
@@ -32,7 +32,7 @@ const t = useT(lang);
     <p>{t("cv.body")}</p>
     <div class="cv__actions">
       <a class="cv__btn" href={`mailto:${SITE.email}?subject=${encodeURIComponent(t("cv.subject"))}`}>{t("cv.email")}</a>
-      <a class="cv__btn" href={`${SITE.whatsapp}?text=${encodeURIComponent(t("cv.text"))}`} target="_blank" rel="noopener">{t("cv.wa")}<sup>&#8599;</sup></a>
+      <a class="cv__btn" href={`${SITE.whatsapp}?text=${encodeURIComponent(t("cv.text"))}`} target="_blank" rel="noopener">{t("cv.wa")}<span class="vh"> {t("a11y.newTab")}</span></a>
     </div>
     <button class="cv__close" value="close" aria-label={t("cv.close")}>{t("cv.close")}</button>
   </form>

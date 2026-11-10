@@ -1,6 +1,6 @@
 ---
 import { SITE } from "../data/site";
-import { L, LANGS, url, useT, type Lang } from "../lib/i18n";
+import { L, url, useT, type Lang } from "../lib/i18n";
 
 interface Props { lang: Lang; path: string; article?: boolean }
 const { lang, path, article } = Astro.props;
@@ -17,7 +17,6 @@ const themes = [
   { id: "dark", icon: '<path d="M11.8 8.6A5 5 0 0 1 5.4 2.2a5 5 0 1 0 6.4 6.4Z"/>' },
   { id: "system", icon: '<rect x="1.2" y="2" width="11.6" height="7.8" rx="1.2"/><path d="M5 12.4h4M7 9.8v2.6"/>' },
 ];
-const langNames = { en: "English", id: "Bahasa Indonesia" };
 ---
 
 <header class="nav" id="nav" data-open="false" data-route={article ? "detail" : "page"}>
@@ -29,11 +28,6 @@ const langNames = { en: "English", id: "Bahasa Indonesia" };
           <a href={url(lang, l.href)} aria-current={l.page && path.startsWith(l.page) ? "page" : undefined}>{t(l.key)}</a>
         ))}
       </nav>
-      <div class="lang" role="group" aria-label={t("lang.aria")}>
-        {LANGS.map((l) => (
-          <a href={url(l, path)} hreflang={l} lang={l} title={langNames[l]} aria-current={l === lang ? "true" : undefined} data-lang={l}>{l.toUpperCase()}</a>
-        ))}
-      </div>
       <div class="theme" id="theme" role="group" aria-label={t("theme.aria")}>
         {themes.map((th) => (
           <button type="button" data-theme={th.id} aria-pressed={th.id === "system" ? "true" : "false"} aria-label={t(`theme.${th.id}`)} title={t(`theme.${th.id}T`)}>
@@ -41,7 +35,7 @@ const langNames = { en: "English", id: "Bahasa Indonesia" };
           </button>
         ))}
       </div>
-      <a class="status" href={url(lang, "/#contact")} data-open={String(SITE.availability.open)}>
+      <a class="status" href={url(lang, "/#contact")} data-open={String(SITE.availability.open)} aria-label={L(SITE.availability.label, lang)}>
         <span class="dot" aria-hidden="true"></span>
         <span class="status__label">{L(SITE.availability.label, lang)}</span>
         <span class="status__short">{L(SITE.availability.short, lang)}</span>

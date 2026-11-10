@@ -10,14 +10,18 @@ export const SITE = {
   current: { en: "Financial regulation", id: "Regulasi keuangan" },
   availability: {
     open: true,
-    label: { en: "Available for Q4 projects", id: "Terbuka untuk proyek Q4" },
-    short: { en: "Q4 open", id: "Q4 buka" }
+    label: { en: "Available for projects", id: "Terbuka untuk proyek Q4" },
+    short: { en: "Open", id: "Q4 buka" }
   },
   author: { initials: "GS", avatar: null },
 
   /* How many items the home page shows before "View all".
      The full lists live at /work and /archive. */
-  featured: { work: 4, archive: 8 },
+  featured: { work: 4, archive: 12 },
+
+  /* Home "Selected work" ledger, in the order listed. Projects with a cover image get the
+     large entry (image + facts); the others are shorter rows. */
+  selected: ["myasn", "currency", "loka"],
 
   /* ImageKit: any URL on these hosts gets resized automatically (?tr=w-800 etc.)
      and a srcset. Add your custom CNAME here if you use one. */
@@ -57,66 +61,68 @@ export const SITE = {
   /* Projects. Each one gets a detail page at /work/<slug> (and /id/work/<slug>).
      Body blocks: p, h, quote, list, sep, img { width: text | wide | full }, pair.
      Images: set src (or image for the cover) to a URL. ratio is optional:
-     "16/9", "1440/900" (pixel size), or leave it out to use the image's own shape.
-     Case study copy below is placeholder. Replace with your own. */
+     "16/9", "1440/900" (pixel size), or leave it out to use the image's own shape. */
   projects: [
     {
       slug: "currency",
       title: "Currency",
-      subtitle: { en: "One design language for a payments company with many product teams.", id: "Satu bahasa desain untuk perusahaan pembayaran dengan banyak tim produk." },
+      subtitle: { en: "One shared Figma library behind DOKU's payment products." },
       category: "Design system",
-      role: "Lead product designer, DOKU",
+      role: "Product designer, DOKU",
       year: "2023",
       date: "Mar 2023",
-      tags: ["Tokens", "Components", "Figma"],
-      ratio: "16/9", mockup: "system", image: null,
+      tags: ["Figma", "Components", "Foundations"],
+      ratio: "16/9", mockup: "system", image: "/work/currency/cover.webp",
+      alt: "Currency, the DOKU design system: color ramps, buttons, form fields, toggles and status badges from the Figma library",
       link: [
         { label: "doku.com", href: "https://www.doku.com" },
         { label: "DOKU Wallet · Google Play", href: "https://play.google.com/store/search?q=doku%20wallet&c=apps&hl=id" }
       ],
       facts: [
-        [{ en: "Role", id: "Peran" }, "Lead product designer"],
+        [{ en: "Role", id: "Peran" }, "Product designer"],
         [{ en: "Timeline", id: "Periode" }, { en: "2019 to 2023", id: "2019 hingga 2023" }],
-        [{ en: "Scope", id: "Cakupan" }, { en: "Tokens, components, docs", id: "Token, komponen, dokumentasi" }],
-        [{ en: "Tools", id: "Perangkat" }, "Figma, Storybook, SCSS"]
+        [{ en: "Scope", id: "Cakupan" }, "Foundations and 25 component families"],
+        [{ en: "Tool", id: "Perangkat" }, "Figma, variants and styles"]
       ],
+      /* Case study copy and images come from the DOKU Design System sheet (Figma library v1.0.0). */
       body: [
-        { type: "p", text: {
-          en: "When I joined DOKU, each product team kept its own version of the same button. Checkout, the merchant dashboard, and the mobile wallet looked related, but only from a distance. Every new feature restarted the same conversations about spacing, color, and states.",
-          id: "Saat saya bergabung dengan DOKU, setiap tim produk menyimpan versi sendiri dari tombol yang sama. Checkout, dashboard merchant, dan dompet mobile terlihat mirip, tetapi hanya dari kejauhan. Setiap fitur baru memulai ulang diskusi yang sama soal spacing, warna, dan state." } },
-        { type: "p", text: {
-          en: "Currency started as a single Figma file and grew into the system every team ships with. This is a short look at how it was built and what held it together.",
-          id: "Currency berawal dari satu file Figma dan tumbuh menjadi sistem yang dipakai setiap tim untuk merilis produk. Berikut gambaran singkat bagaimana sistem ini dibangun dan apa yang membuatnya tetap utuh." } },
-        { type: "h", text: { en: "Start with tokens, not components", id: "Mulai dari token, bukan komponen" } },
-        { type: "p", text: {
-          en: "An audit of live screens turned up dozens of near-identical grays and blues. Instead of drawing new components on top of that noise, the first release was only tokens: color, type, spacing, radius, and elevation, named by role rather than by value.",
-          id: "Audit terhadap layar yang sudah live menemukan puluhan abu-abu dan biru yang nyaris identik. Alih-alih menggambar komponen baru di atas kekacauan itu, rilis pertama hanya berisi token: warna, tipografi, spacing, radius, dan elevasi, yang dinamai berdasarkan peran, bukan nilainya." } },
-        { type: "img", width: "wide", ratio: "16/10", mockup: "ramp", src: null, caption: {
-          en: "Neutral ramp with role names. Each step maps to one SCSS variable and one Figma style.",
-          id: "Ramp netral dengan nama peran. Setiap tingkat dipetakan ke satu variabel SCSS dan satu style Figma." } },
-        { type: "p", text: {
-          en: "Because the names described intent, engineers could adopt tokens inside old code without redesigning anything. Adoption came first. Visual consistency followed.",
-          id: "Karena namanya menjelaskan maksud, engineer bisa mengadopsi token di dalam kode lama tanpa mendesain ulang apa pun. Adopsi datang lebih dulu. Konsistensi visual menyusul." } },
-        { type: "quote", text: {
-          en: "A token named for its job survives a rebrand. A token named for its hex value does not.",
-          id: "Token yang dinamai sesuai fungsinya akan bertahan saat rebrand. Token yang dinamai sesuai nilai hex-nya tidak." } },
-        { type: "h", text: { en: "Components with a contract", id: "Komponen dengan kontrak" } },
-        { type: "p", text: {
-          en: "Each component shipped with three things: the Figma master, a coded reference in Storybook, and a page listing its states, props, and the cases it does not cover. That last part saved the most time in review.",
-          id: "Setiap komponen dirilis dengan tiga hal: master di Figma, referensi kode di Storybook, dan halaman yang mencantumkan state, props, serta kasus yang tidak ditanganinya. Bagian terakhir itulah yang paling menghemat waktu saat review." } },
-        { type: "pair", items: [{ ratio: "4/5", mockup: "form", src: null }, { ratio: "4/5", mockup: "system", src: null }], caption: {
-          en: "Form field anatomy and button states, documented next to the code.",
-          id: "Anatomi form field dan state tombol, didokumentasikan berdampingan dengan kodenya." } },
-        { type: "h", text: { en: "What changed", id: "Apa yang berubah" } },
+        { type: "p", text: { en: "The library starts with brand color, type and elevation. On top of those sit the 25 component families that DOKU's dashboards, checkout and merchant tools are built from." } },
+        { type: "h", text: { en: "What the library holds" } },
+        { type: "p", text: { en: "Foundations come first and every component draws from them. Each component page carries its own guideline frame, so a designer can pick a variant and read when to use it in the same place." } },
         { type: "list", items: [
-          { en: "New product squads started from the system on day one.", id: "Squad produk baru langsung memakai sistem sejak hari pertama." },
-          { en: "Design review moved from pixel checks to flow and content.", id: "Design review bergeser dari cek piksel ke alur dan konten." },
-          { en: "Dark mode became a token change instead of a project.", id: "Dark mode menjadi perubahan token, bukan sebuah proyek." }
+          "36 pages in Figma",
+          "25 component families",
+          "400+ variants across sets",
+          "18 text styles",
+          "7 elevation levels"
         ] },
-        { type: "sep" },
-        { type: "p", text: {
-          en: "<em>Placeholder copy.</em> Replace this case study with your own numbers, screenshots, and lessons.",
-          id: "<em>Teks placeholder.</em> Ganti studi kasus ini dengan angka, screenshot, dan pelajaran Anda sendiri." } }
+        { type: "img", width: "wide", ratio: "2000/1005", src: "/work/currency/overview.webp", alt: "Overview of the DOKU Figma library: foundations, extras and the component index with variants per set", caption: "Foundations: logo, color, type, icons and shadow. Extras: captcha, email template and a sample page." },
+        { type: "h", text: { en: "Color" } },
+        { type: "p", text: { en: "Red is the primary brand color and carries every primary action. Tosca and orange support it, and black runs as a ten step neutral for text, borders and surfaces. Each ramp has nine tints and shades with 50 as the base." } },
+        { type: "img", width: "wide", ratio: "2000/1403", src: "/work/currency/color.webp", alt: "Red, tosca, orange and black color ramps with hex values, and the color roles table", caption: "The four ramps with hex values, and the role table that assigns colors to actions, text, states and borders." },
+        { type: "h", text: { en: "Type" } },
+        { type: "p", text: { en: "A single family, DIN Next LT Pro, in three weights. Its narrow letterforms keep amounts and account numbers compact in dense dashboards. Line heights sit on a 4 px grid." } },
+        { type: "img", width: "wide", ratio: "2000/1355", src: "/work/currency/type.webp", alt: "Type scale from Title/H1 48/72 down to Caption/S 10/12, with regular, medium and bold weights", caption: "Shown in Barlow, the closest web-available match to DIN Next LT Pro." },
+        { type: "h", text: { en: "Elevation" } },
+        { type: "p", text: { en: "Seven shadow styles, from a hairline lift for inputs to the deep shadow behind modals. Higher layers sit closer to the user and cast softer, wider shadows." } },
+        { type: "img", width: "wide", ratio: "2000/624", src: "/work/currency/elevation.webp", alt: "Seven shadow styles from Shadow/xs to Shadow/3xl", caption: "Cards use sm, popovers lg, modals 3xl." },
+        { type: "h", text: { en: "Buttons" } },
+        { type: "p", text: { en: "The largest set in the library, with 216 variants. Four variants share one anatomy, so a single component covers every action on a page, from Pay now to an icon-only delete. In the loading state the button keeps its width, so nothing around it shifts while a payment is processing." } },
+        { type: "img", width: "wide", ratio: "2000/821", src: "/work/currency/buttons.webp", alt: "Primary, secondary, normal and text buttons in default, hover, pressed, disabled and loading states, with sizes and types", caption: "Variant by state, three sizes and four types." },
+        { type: "h", text: { en: "Form and input" } },
+        { type: "p", text: { en: "Every field shares one frame: label, control, helper. States change only the border and the helper line, so validation reads the same across checkout, onboarding and settings." } },
+        { type: "img", width: "wide", ratio: "2000/1052", src: "/work/currency/form.webp", alt: "Input fields in default, focus, filled, error, success, read only and disabled states, and input types", caption: "Seven states and seven field types, 101 variants in all." },
+        { type: "h", text: { en: "Selection" } },
+        { type: "p", text: { en: "Checkbox for many, radio for one, toggle for settings that apply right away. All three share the red active fill and the same disabled grey." } },
+        { type: "img", width: "wide", ratio: "2000/912", src: "/work/currency/selection.webp", alt: "Checkbox, radio and toggle states, and examples of each in use", caption: "Checkbox 32, radio 8 and toggle 3 variants." },
+        { type: "h", text: { en: "Feedback" } },
+        { type: "p", text: { en: "Status always uses the same four tones: success, warning, error and neutral. A badge labels a record, a toast reports what just happened, and a modal stops the flow only when a choice cannot be undone." } },
+        { type: "img", width: "wide", ratio: "2000/1180", src: "/work/currency/feedback.webp", alt: "Status badges, inline and flag toasts, and a confirmation modal", caption: "Badge 4, toast 12 and modal 12 variants." },
+        { type: "h", text: { en: "Tabs, table and cards" } },
+        { type: "p", text: { en: "The merchant dashboard runs on these three. The table is assembled from ten cell types, so a new report is built by choosing the columns it needs." } },
+        { type: "img", width: "wide", ratio: "2000/1482", src: "/work/currency/data.webp", alt: "Default and pill tabs, a transactions table built from cell types, and dashboard cards", caption: "Tabs 5, table cells 10 and cards 5 variants." },
+        { type: "h", text: { en: "Where the library is used" } },
+        { type: "p", text: { en: "Foundations feed the components, and the components feed checkout, the merchant dashboard and internal tools. Changing a foundation such as RED50 or Body M updates every file that uses it." } }
       ]
     },
     {
@@ -128,8 +134,16 @@ export const SITE = {
       year: "2022",
       date: { en: "Aug 2022", id: "Agu 2022" },
       tags: ["Web", "Android", "Gov"],
-      ratio: "16/10", mockup: "mobile", image: "https://ik.imagekit.io/gorat/rohaworks/mysapk/image-cover.avif",
+      ratio: "16/9", mockup: "mobile", image: "/work/myasn/cover.webp",
+      alt: "MyASN design system: approval status cards, buttons, a submission stepper and e-Lapkin rating badges",
       link: { label: "MyASN · Google Play", href: "https://play.google.com/store/apps/details?id=com.nudi.bkn.sapk&hl=id" },
+      /* Facts for the lead entry on the home page. Figures come from the case study below. */
+      lead: [
+        ["Role", "UIX Engineer"],
+        ["Scope", "100+ screens designed and built"],
+        ["Platform", "Web, Android"],
+        ["Google Play", { text: "5M+ installs", href: "https://play.google.com/store/apps/details?id=com.nudi.bkn.sapk&hl=id" }]
+      ],
       facts: [
         [{ en: "Role", id: "Peran" }, "UIX Engineer"],
         [{ en: "Client", id: "Klien" }, "BKN"],
@@ -171,6 +185,35 @@ export const SITE = {
           en: "Work ran in two-week sprints. Each cycle closed with a sprint review shared with backend and frontend teams, forcing early alignment on what was designed, what was buildable, and what actually shipped." } },
         { type: "p", text: {
           en: "Component discipline was the foundation. Every screen was designed against what the API could realistically return. Edge cases (empty states, error states, partial data) were spec'd alongside the happy path, not added later. On the code side, Vue components were kept tightly aligned with the design system, so across 100+ screens the gap between mockup and production stayed small enough to matter." } },
+        { type: "h", text: { en: "The design system behind it" } },
+        { type: "p", text: { en: "Civil servants use MyASN to keep their own records current, get documents approved and check their performance. One shell and one set of components carry all of it, from a profile form to a nine-box talent grid." } },
+        { type: "h", text: { en: "The shell" } },
+        { type: "p", text: { en: "Every desktop screen starts from the same frame. A blue header band holds the user's identity and the page title, and the white content card overlaps its lower edge. Navigation stays in the left rail, so people always know where the menu is." } },
+        { type: "img", width: "wide", ratio: "2000/1397", src: "/work/myasn/shell.webp", alt: "MyASN app shell: top bar, profile block, title and breadcrumb on the blue band, navigation rail and the overlapping content card", caption: "Rail 280 px, content 826 px, a 350 px blue band and a card that overlaps it by 170 px." },
+        { type: "h", text: { en: "Color" } },
+        { type: "p", text: { en: "A single blue carries the brand. Everything else is functional: a cool neutral scale for text and surfaces, and small sets for approval status, performance ratings and charts. Status colors never borrow from the brand blue, except Ditolak, which uses its darkest step." } },
+        { type: "img", width: "wide", ratio: "2000/1288", src: "/work/myasn/color.webp", alt: "MyASN blue and neutral scales, approval status colors, e-Lapkin rating colors and chart colors", caption: "Brand #3085FF, page #F4F7FB, text #3A3E40." },
+        { type: "h", text: { en: "Type" } },
+        { type: "p", text: { en: "A geometric sans in four weights. Bold titles sit on the blue band, semibold marks the values people come to check, and regular carries the labels next to them. Small caps labels group sections without adding lines." } },
+        { type: "img", width: "wide", ratio: "2000/1205", src: "/work/myasn/type.webp", alt: "Proxima Nova type scale from the 30/36 page title down to the 12/16 caption", caption: "Proxima Nova, shown here in Figtree, the closest web-available match." },
+        { type: "h", text: { en: "Actions and input" } },
+        { type: "p", text: { en: "Buttons come in two families. On white, a filled primary leads and a soft blue offers the safe alternative. On the blue band, white and ghost buttons keep contrast without a second brand color. Filters use pill-shaped fields so people read them as adjustable settings." } },
+        { type: "img", width: "wide", ratio: "2000/1474", src: "/work/myasn/controls.webp", alt: "Buttons on white and on blue, form fields, filter and sort controls, and an upload field with a validation error", caption: "40 px controls, 6 px radius, and a blue border with a 3 px halo on focus." },
+        { type: "h", text: { en: "Navigation" } },
+        { type: "p", text: { en: "Four levels, each with its own form. The rail moves between services, tabs on the band switch sections of a record, the vertical list picks a category inside a card, and the stepper walks a submission from data to review." } },
+        { type: "img", width: "wide", ratio: "2000/1571", src: "/work/myasn/navigation.webp", alt: "Navigation rail, category list, three-step stepper, tabs on the blue band and mobile pagination", caption: "Rail, tabs, category list and stepper." },
+        { type: "h", text: { en: "Status" } },
+        { type: "p", text: { en: "Approval runs through four states, and each one owns a color from the summary card down to the badge on a single row. Rejected and finished rows fade back so open items stand out. Ratings use a separate warm to green scale that reads as a grade." } },
+        { type: "img", width: "wide", ratio: "2000/1080", src: "/work/myasn/status.webp", alt: "Approval summary cards, approval and rating badges, news categories and notification items", caption: "Menunggu paraf, Menunggu persetujuan, Disetujui and Ditolak, and five rating levels." },
+        { type: "h", text: { en: "Records" } },
+        { type: "p", text: { en: "Most of MyASN is reading a record and spotting what is wrong with it. Label and value pairs keep the label quiet and the value in semibold. Lists end in one clear action, like Download, and the e-Lapkin score sheet closes on a heavy total row." } },
+        { type: "img", width: "wide", ratio: "2000/2374", src: "/work/myasn/data.webp", alt: "Key value record, e-Lapkin score sheet, approval table, document list, news and category tiles", caption: "Key value pairs, tables, document lists, tiles, the score sheet and news." },
+        { type: "h", text: { en: "Charts" } },
+        { type: "p", text: { en: "Two charts answer the two questions a civil servant asks about themselves. The radar compares nine ASN competencies against the target for their unit. The nine-box places them on performance and potential, and the cell color tells them how they are doing before they read a number." } },
+        { type: "img", width: "wide", ratio: "2000/1823", src: "/work/myasn/charts.webp", alt: "Competency radar chart against the unit target, and a nine-box grid of performance and potential", caption: "Example values." },
+        { type: "h", text: { en: "Screens" } },
+        { type: "p", text: { en: "Each screen reuses the shell, the card and the components above, so adding a service means laying out a new card inside the existing frame. Profile data, approvals, documents, performance and the electronic ID card all live in the same frame, so a civil servant only has to learn MyASN once." } },
+        { type: "img", width: "wide", ratio: "2000/2544", src: "/work/myasn/screens.webp", alt: "Ten MyASN desktop screens at 1440 px and the mobile notification screen at 360 px", caption: "Ten desktop screens and one mobile screen. Mobile keeps the blue band and the overlapping card, and folds the rail into a menu button." },
         { type: "h", text: { en: "The experience held" } },
         { type: "p", text: {
           en: "MyASN BKN is in active use by civil servants across Indonesia, available on web and Android." } },
@@ -185,84 +228,50 @@ export const SITE = {
       ]
     },
     {
-      slug: "ledger",
-      title: "Ledger Review Console",
-      subtitle: { en: "A concept for reviewing platform activity without losing the audit trail.", id: "Konsep untuk meninjau aktivitas platform tanpa kehilangan jejak audit." },
-      category: { en: "Regulatory tech, concept", id: "Teknologi regulasi, konsep" },
-      role: { en: "Design and frontend", id: "Desain dan frontend" },
+      slug: "loka",
+      title: "Loka",
+      subtitle: { en: "A food delivery app that takes an order from search to doorstep." },
+      category: "Mobile app",
+      role: "Product designer",
       year: "2026",
-      date: "Sep 2026",
-      tags: ["Dashboard", "Audit trail", "Astro"],
-      ratio: "4/3", mockup: "console", image: null,
+      tags: ["Mobile", "Delivery", "Figma"],
+      ratio: "16/9", mockup: "mobile", image: "/work/loka/cover.webp",
+      alt: "Loka food delivery app: the home, tracking and cart screens on an orange background",
       link: null,
       facts: [
-        [{ en: "Role", id: "Peran" }, { en: "Design and frontend", id: "Desain dan frontend" }],
-        ["Status", { en: "Personal concept", id: "Konsep pribadi" }],
-        [{ en: "Year", id: "Tahun" }, "2026"],
-        ["Stack", "Astro, CSS"]
+        [{ en: "Role", id: "Peran" }, "Product designer"],
+        [{ en: "Type", id: "Jenis" }, "Food delivery app"],
+        [{ en: "Scope", id: "Cakupan" }, "From search to delivery tracking"],
+        [{ en: "Tool", id: "Perangkat" }, "Figma"]
       ],
       body: [
-        { type: "p", text: {
-          en: "This is a personal concept, not a production tool. It explores how a reviewer could move through a queue of platform reports while every decision stays traceable.",
-          id: "Ini adalah konsep pribadi, bukan alat produksi. Konsep ini mengeksplorasi bagaimana seorang reviewer dapat menelusuri antrean laporan platform sementara setiap keputusan tetap bisa dilacak." } },
-        { type: "h", text: { en: "Every screen is a record", id: "Setiap layar adalah catatan" } },
-        { type: "p", text: {
-          en: "In supervisory work, the reason behind a decision matters as much as the decision. The console keeps the evidence, the note, and the outcome on the same surface, so nothing lives only in someone's memory.",
-          id: "Dalam pekerjaan pengawasan, alasan di balik sebuah keputusan sama pentingnya dengan keputusannya. Konsol ini menjaga bukti, catatan, dan hasil tetap di satu permukaan, sehingga tidak ada yang hanya tersimpan di ingatan seseorang." } },
-        { type: "img", width: "wide", ratio: "16/10", mockup: "console", src: null, caption: {
-          en: "Review queue with status flags and the evidence panel collapsed.",
-          id: "Antrean review dengan penanda status dan panel bukti dalam keadaan tertutup." } },
-        { type: "quote", text: {
-          en: "If a reviewer cannot explain why a case was closed, the interface failed, not the reviewer.",
-          id: "Jika reviewer tidak bisa menjelaskan mengapa sebuah kasus ditutup, yang gagal adalah antarmukanya, bukan reviewernya." } },
-        { type: "h", text: { en: "Built in the browser", id: "Dibangun langsung di browser" } },
-        { type: "p", text: {
-          en: "The prototype runs on Astro with plain CSS and a small token file. Working in code early made density, keyboard flow, and table performance real questions instead of guesses.",
-          id: "Prototipe ini berjalan di Astro dengan CSS biasa dan satu file token kecil. Bekerja di kode sejak awal membuat kepadatan, alur keyboard, dan performa tabel menjadi pertanyaan nyata, bukan tebakan." } },
-        { type: "img", width: "wide", ratio: "3/2", mockup: "chart", src: null, caption: {
-          en: "Trend widget for reported volume across a reporting period.",
-          id: "Widget tren untuk volume yang dilaporkan sepanjang satu periode pelaporan." } },
-        { type: "sep" },
-        { type: "p", text: {
-          en: "<em>Placeholder copy.</em> Replace with your own notes on the concept.",
-          id: "<em>Teks placeholder.</em> Ganti dengan catatan Anda sendiri tentang konsep ini." } }
-      ]
-    },
-    {
-      slug: "roha",
-      title: "Roha Studio",
-      subtitle: { en: "Identity and website for a one-person design studio.", id: "Identitas dan situs web untuk studio desain satu orang." },
-      category: { en: "Identity and website", id: "Identitas dan situs web" },
-      role: { en: "Founder, designer", id: "Pendiri, desainer" },
-      year: "2025",
-      date: "Feb 2025",
-      tags: ["Brand", "Type", "Web"],
-      ratio: "16/9", mockup: "type", image: null,
-      link: { label: "rohaworks.com", href: "https://rohaworks.com" },
-      facts: [
-        [{ en: "Role", id: "Peran" }, { en: "Founder", id: "Pendiri" }],
-        [{ en: "Year", id: "Tahun" }, "2025"],
-        [{ en: "Scope", id: "Cakupan" }, { en: "Wordmark, type, site", id: "Wordmark, tipografi, situs" }],
-        ["Stack", "Astro"]
-      ],
-      body: [
-        { type: "p", text: {
-          en: "Roha is the name I work under for identity and web projects. The brand had one job: look like the work, quiet and exact, with nothing added for show.",
-          id: "Roha adalah nama yang saya pakai untuk proyek identitas dan web. Brand ini punya satu tugas: terlihat seperti karyanya, tenang dan presisi, tanpa tambahan sekadar untuk pamer." } },
-        { type: "img", width: "wide", ratio: "3/2", mockup: "type", src: null, caption: {
-          en: "Wordmark on its baseline grid.",
-          id: "Wordmark di atas grid baseline-nya." } },
-        { type: "h", text: { en: "A wordmark that sits on the grid", id: "Wordmark yang berpijak pada grid" } },
-        { type: "p", text: {
-          en: "The letters are tightened to the same baseline unit the site uses for spacing. The mark and the layout share one measure, so the site feels built rather than decorated.",
-          id: "Huruf-hurufnya dirapatkan ke unit baseline yang sama dengan yang dipakai situs untuk spacing. Logo dan layout berbagi satu ukuran, sehingga situs terasa dibangun, bukan dihias." } },
-        { type: "pair", items: [{ ratio: "4/5", mockup: "ramp", src: null }, { ratio: "4/5", mockup: "type", src: null }], caption: {
-          en: "Palette and type specimen.",
-          id: "Palet dan spesimen tipografi." } },
-        { type: "sep" },
-        { type: "p", text: {
-          en: "<em>Placeholder copy.</em> Replace with the real story behind the studio.",
-          id: "<em>Teks placeholder.</em> Ganti dengan cerita sebenarnya di balik studio ini." } }
+        { type: "p", text: { en: "Loka is a mobile food delivery app. This case study follows one complete order: allowing permissions, finding a place to eat, customizing a dish, checking the cart and following the driver until the food arrives." } },
+        { type: "h", text: { en: "Permissions" } },
+        { type: "p", text: { en: "The first two screens ask for location and notification access one at a time. Each says in a sentence what the permission is for. Location is only read while the app is in use, and notifications keep the order progress up to date. Notifications can be skipped with Nanti saja." } },
+        { type: "img", width: "wide", ratio: "940/972", src: "/work/loka/permission.webp", alt: "Location and notification permission screens, each with an illustration, one sentence of explanation and a single button", caption: "Location and notification permissions, one per screen." },
+        { type: "h", text: { en: "Home" } },
+        { type: "p", text: { en: "Home starts with the delivery address and a search field, then moves through deals, a points balance, categories, a weekly special and new restaurants. Once something is added, a cart bar floats above the tab bar with the total and the number of orders. While an order is on its way, three status cards at the top show where the driver is." } },
+        { type: "img", width: "wide", ratio: "940/1848", src: "/work/loka/home.webp", alt: "Loka home screen with deals, points, categories and restaurants, next to the home screen with order status cards and the one with the floating cart bar", caption: "The full home page, with order status cards and the floating cart bar." },
+        { type: "h", text: { en: "Search" } },
+        { type: "p", text: { en: "Before typing, search offers popular searches and categories. Results show each restaurant with its rating, distance and delivery time, followed by the matching dishes and their prices. A closed restaurant is marked Tutup. Filter and sort sit above the list." } },
+        { type: "img", width: "wide", ratio: "1362/972", src: "/work/loka/search.webp", alt: "Search screen with popular searches and categories, the keyboard open while typing, and the results list with filter and sort", caption: "Search before typing, while typing, and the results." },
+        { type: "h", text: { en: "Restaurant page and dish options" } },
+        { type: "p", text: { en: "The restaurant page keeps the decision short: distance and price range, the promo that applies, then the menu. Each item has a photo, a short description, the price and a Promo tag where one applies. Sold out items stay on the list, faded, with Habis in red." } },
+        { type: "p", text: { en: "Options on a dish are grouped by how they must be answered. Required groups, such as chicken part and rice, say Wajib pilih 1. Optional extras can be combined, and there is a note field. Options that are sold out stay visible and say Habis. The bottom bar holds the quantity stepper and the Tambah button with the price." } },
+        { type: "img", width: "wide", ratio: "1784/1372", src: "/work/loka/restaurant.webp", alt: "Restaurant page with a promo card and menu list, then the dish screen with required options, optional extras and a note field", caption: "The restaurant page, then the dish screen from the top to the note field." },
+        { type: "h", text: { en: "Cart" } },
+        { type: "p", text: { en: "The cart repeats the delivery address and estimated time, with a note field for the driver. Orders are grouped by restaurant. Each item has Ubah, a quantity stepper and delete, plus the options and note that were chosen. A small fee is added when an order comes from more than one restaurant. A banner shows the points the order earns, and the payment summary breaks the price into discount, extra fee and delivery fee before the total. Notes open in a bottom sheet with a 200 character limit." } },
+        { type: "img", width: "wide", ratio: "940/1630", src: "/work/loka/cart.webp", alt: "Cart with the delivery address, items grouped by restaurant, payment summary and the continue button, and the two note sheets", caption: "The cart and its two note sheets, one for the order and one for the driver." },
+        { type: "h", text: { en: "Orders" } },
+        { type: "p", text: { en: "The order list has two tabs, History and Dalam proses. A history row shows the restaurants, the date, the total, a green Selesai status and Pesan lagi to order again. An order in progress shows the restaurants, the total and the number of items." } },
+        { type: "img", width: "wide", ratio: "940/973", src: "/work/loka/order.webp", alt: "Order list with the History tab selected and the Dalam proses tab selected", caption: "History and in-progress orders." },
+        { type: "h", text: { en: "Delivery progress" } },
+        { type: "p", text: { en: "Tracking runs in four steps: searching for a driver, driver found and heading to the restaurant, order being prepared, and driver on the way. The map shows the restaurant, the driver and the route in green, and a bottom sheet carries the current step on a four part progress bar. Cancelling is possible while the app is still searching for a driver." } },
+        { type: "img", width: "wide", ratio: "1784/972", src: "/work/loka/tracking.webp", alt: "Four map screens showing the steps from searching for a driver to the driver on the way", caption: "The four tracking steps on the map." },
+        { type: "p", text: { en: "Pulling the sheet up shows the driver with call and chat buttons, the pickup and drop-off points, the items and the payment method. When the order arrives, a rating screen asks for one to five stars and an optional comment for the driver." } },
+        { type: "img", width: "wide", ratio: "1362/1451", src: "/work/loka/delivery.webp", alt: "Expanded tracking sheet with driver details, the full order status list, and the rating screen", caption: "Driver details, the full status list and the rating screen." },
+        { type: "h", text: { en: "Color and status" } },
+        { type: "p", text: { en: "One orange does the action work: primary buttons, the active tab and links. Green is kept for progress and finished states, and red for promos and sold out items. That keeps the colors that mean something from competing with the one that asks for a tap." } }
       ]
     }
   ],
@@ -301,19 +310,19 @@ export const SITE = {
      and scroll in the viewer. The first `featured.archive` items appear on home.
      project links an item to a case study. */
   shots: [
-    { title: { en: "Roha brand language and design system", id: "Bahasa brand dan design system Roha" }, tag: "Brand", project: "roha",
+    { title: { en: "Roha brand language and design system", id: "Bahasa brand dan design system Roha" }, tag: "Brand",
       src: "https://ik.imagekit.io/gorat/gorat/archive/roha-brand-lang.png",
       href: "https://www.rohaworks.com/work/roha-design-system/" },
     { title: { en: "Sorrel Leather, leather goods e-commerce template", id: "Sorrel Leather, template e-commerce barang kulit" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/project/assets/sorrel-bag/cover-sorrel-leather.png",
       href: "https://www.rohaworks.com/templates/sorrel-leather/" },
-    { title: { en: "Pixel Forge, creative agency website concept", id: "Pixel Forge, konsep website agensi kreatif" }, tag: "Web", project: "roha",
+    { title: { en: "Pixel Forge, creative agency website concept", id: "Pixel Forge, konsep website agensi kreatif" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/agency/image-cover.avif", href: "https://www.rohaworks.com/templates/creative-agency/" },
-    { title: { en: "Bima Arsana, photographer portfolio website", id: "Bima Arsana, website portofolio fotografer" }, tag: "Web", project: "roha", ratio: "390/844",
+    { title: { en: "Bima Arsana, photographer portfolio website", id: "Bima Arsana, website portofolio fotografer" }, tag: "Web", ratio: "390/844",
       src: "/archive/bima-arsana.png", href: "https://www.rohaworks.com/templates/bima-arsana/" },
-    { title: { en: "Teduh Residence, housing cluster marketing site", id: "Teduh Residence, situs pemasaran klaster perumahan" }, tag: "Web", project: "roha",
+    { title: { en: "Teduh Residence, housing cluster marketing site", id: "Teduh Residence, situs pemasaran klaster perumahan" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/project/assets/residence/cover-teduh-residence-dev.png", href: "https://www.rohaworks.com/templates/teduh-residence/" },
-    { title: { en: "Cute Things by Eca, clay charm e-commerce", id: "Cute Things by Eca, e-commerce clay charm" }, tag: "Web", project: "roha",
+    { title: { en: "Cute Things by Eca, clay charm e-commerce", id: "Cute Things by Eca, e-commerce clay charm" }, tag: "Web",
       src: "https://ik.imagekit.io/gorat/ctba/kc-5.avif", href: "https://www.rohaworks.com/templates/toys-charm/" },
     { title: { en: "Crypto exchanges don't hold your money", id: "Exchange kripto nggak pegang uang kamu" }, tag: "Motion", ratio: "9/16",
       src: "https://ik.imagekit.io/gorat/gorat/archive/erticle-crypto-ina.jpg",
@@ -329,15 +338,15 @@ export const SITE = {
     { title: { en: "Merchant dashboard, full page", id: "Dashboard merchant, halaman penuh" }, tag: "Product", project: "currency", ratio: "1440/4100", mockup: "console", src: null },
     { title: { en: "Button and input specs", id: "Spesifikasi tombol dan input" }, tag: "System", project: "currency", ratio: "1/1", mockup: "system", src: null },
     { title: { en: "KYC onboarding form", id: "Formulir onboarding KYC" }, tag: "Product", ratio: "3/4", mockup: "form", src: null },
-    { title: { en: "Roha wordmark", id: "Wordmark Roha" }, tag: "Brand", project: "roha", ratio: "3/2", mockup: "type", src: null },
-    { title: { en: "Review queue, concept", id: "Antrean review, konsep" }, tag: "Product", project: "ledger", ratio: "16/10", mockup: "console", src: null },
+    { title: { en: "Roha wordmark", id: "Wordmark Roha" }, tag: "Brand", ratio: "3/2", mockup: "type", src: null },
+    { title: { en: "Loka home", id: "Beranda Loka" }, tag: "Mobile", project: "loka", ratio: "10/21", src: "/work/loka/screen-home.webp" },
     /* TODO: re-enable with real MyASN images
     { title: { en: "Leave request flow", id: "Alur pengajuan cuti" }, tag: "Mobile", project: "myasn", ratio: "9/16", mockup: "mobile", src: null },
     */
     { title: { en: "Payment link checkout", id: "Checkout payment link" }, tag: "Product", ratio: "2/3", mockup: "form", src: null },
     { title: { en: "Neutral palette, dark", id: "Palet netral, gelap" }, tag: "System", project: "currency", ratio: "1/1", mockup: "ramp", src: null },
-    { title: { en: "Volume trend widget", id: "Widget tren volume" }, tag: "Product", project: "ledger", ratio: "21/9", mockup: "chart", src: null },
-    { title: { en: "Studio site hero", id: "Hero situs studio" }, tag: "Brand", project: "roha", ratio: "5/4", mockup: "type", src: null },
+    { title: { en: "Loka delivery tracking", id: "Pelacakan pesanan Loka" }, tag: "Mobile", project: "loka", ratio: "10/21", src: "/work/loka/screen-tracking.webp" },
+    { title: { en: "Studio site hero", id: "Hero situs studio" }, tag: "Brand", ratio: "5/4", mockup: "type", src: null },
     /* TODO: re-enable with real MyASN images
     { title: { en: "Document viewer", id: "Penampil dokumen" }, tag: "Mobile", project: "myasn", ratio: "1170/2532", mockup: "mobile", src: null },
     */

@@ -4,11 +4,11 @@ import Base from "../layouts/Base.astro";
 
 <Base lang="en" path="/" title="Page not found" noindex>
   <main>
-    <section class="wrap page-head">
+    <section class="wrap page-head" aria-labelledby="page-title">
       <span class="label">404</span>
-      <h1 class="page-title">Page not found<sup class="tab">/ Halaman tidak ditemukan</sup></h1>
+      <h1 class="page-title" id="page-title">Page not found</h1>
       <p class="page-intro">The page you are looking for has moved or does not exist.</p>
-      <p class="page-intro"><a class="btn btn--solid" href="/">Back to home</a> <a class="btn" href="/id/">Ke beranda</a></p>
+      <p class="page-intro"><a class="btn btn--solid" href="/">Back to home</a></p>
     </section>
   </main>
 </Base>
