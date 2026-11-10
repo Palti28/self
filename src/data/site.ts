@@ -17,7 +17,7 @@ export const SITE = {
 
   /* How many items the home page shows before "View all".
      The full lists live at /work and /archive. */
-  featured: { work: 4, archive: 8 },
+  featured: { work: 4, archive: 12 },
 
   /* Home "Selected work" ledger: the first slug is the lead entry (image + facts),
      the rest are shorter rows. Order is as listed here. */
